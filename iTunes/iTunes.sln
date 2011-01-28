@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTunes.Duplicate.Gui", "iTunes.Duplicate.Gui\iTunes.Duplicate.Gui.csproj", "{B2FB0C8A-55D5-4A0F-B644-E7FF180E8370}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "iTunes.Duplicate.Setup", "iTunes.Duplicate.Setup\iTunes.Duplicate.Setup.vdproj", "{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,12 @@ Global
 		{B2FB0C8A-55D5-4A0F-B644-E7FF180E8370}.Release|Mixed Platforms.Build.0 = Release|x86
 		{B2FB0C8A-55D5-4A0F-B644-E7FF180E8370}.Release|x86.ActiveCfg = Release|x86
 		{B2FB0C8A-55D5-4A0F-B644-E7FF180E8370}.Release|x86.Build.0 = Release|x86
+		{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}.Debug|Any CPU.ActiveCfg = Debug
+		{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}.Debug|x86.ActiveCfg = Debug
+		{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}.Release|Any CPU.ActiveCfg = Release
+		{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}.Release|Mixed Platforms.ActiveCfg = Release
+		{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
