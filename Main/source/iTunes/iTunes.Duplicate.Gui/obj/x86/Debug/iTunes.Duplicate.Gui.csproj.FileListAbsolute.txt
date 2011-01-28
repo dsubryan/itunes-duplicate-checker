@@ -1,0 +1,42 @@
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\bin\Debug\iTunes.Duplicate.Gui.exe
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\bin\Debug\iTunes.Duplicate.Gui.pdb
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.Properties.Resources.resources
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.exe
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.pdb
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\bin\Debug\iTunes.Duplicate.Gui.exe.config
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\bin\Debug\Interop.iTunesLib.dll
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\Interop.iTunesLib.dll
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.csproj.ResolveComReference.cache
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.iTunesForm.resources
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\bin\Debug\iTunes.Duplicate.Gui.exe.config
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\bin\Debug\iTunes.Duplicate.Gui.exe
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\bin\Debug\iTunes.Duplicate.Gui.pdb
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\bin\Debug\taglib-sharp.dll
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\bin\Debug\Interop.iTunesLib.dll
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\Interop.iTunesLib.dll
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.csproj.ResolveComReference.cache
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.Properties.Resources.resources
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.exe
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.pdb
+C:\Users\subryad\Documents\iTunes\iTunes\iTunes.Duplicate.Gui\bin\Debug\taglib-sharp.dll
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\bin\Debug\iTunes.Duplicate.Gui.exe.config
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\Interop.iTunesLib.dll
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.csproj.ResolveComReference.cache
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.exe
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.pdb
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\bin\Debug\iTunes.Duplicate.Gui.exe
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\bin\Debug\iTunes.Duplicate.Gui.pdb
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\bin\Debug\taglib-sharp.dll
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\bin\Debug\Interop.iTunesLib.dll
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.iTunesForm.resources
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.Properties.Resources.resources
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\David\Documents\Visual Studio 2010\Projects\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\subryad\Downloads\iTunes\iTunes.Duplicate.Gui\obj\x86\Debug\iTunes.Duplicate.Gui.iTunesForm.resources
