@@ -17,6 +17,7 @@ namespace iTunes.Duplicate.Gui
         private iTunes iTunesApp;
         static BackgroundWorker bwCheckLibrary = new BackgroundWorker();
         static BackgroundWorker bwMoveFolder = new BackgroundWorker();
+        static BackgroundWorker bwAddFolder = new BackgroundWorker();
         private FormState.FormStateID state;
 
         public iTunesForm()
@@ -32,6 +33,9 @@ namespace iTunes.Duplicate.Gui
             bwMoveFolder.DoWork += bwMoveFolder_DoWork;
             bwMoveFolder.RunWorkerCompleted += bwMoveFolder_RunWorkerCompleted;
 
+            bwAddFolder.DoWork += bwAddFolder_DoWork;
+            bwAddFolder.RunWorkerCompleted += bwAddFolder_RunWorkerCompleted;
+
             state = FormState.FormStateID.ReadyToProcess;
             ControlState();
         }
@@ -44,6 +48,7 @@ namespace iTunes.Duplicate.Gui
             btnCheckDuplicates.Enabled = false;
             btnRemoveDuplicates.Enabled = false;
             btnCopy.Enabled = false;
+            btnAddToLibrary.Enabled = false;
 
             txtDestinationDir.ReadOnly = true;
             txtSourceDirectory.ReadOnly = true;
@@ -63,9 +68,13 @@ namespace iTunes.Duplicate.Gui
                 btnCheckDuplicates.Enabled = false;
                 btnRemoveDuplicates.Enabled = false;
                 btnCopy.Enabled = false;
+                btnAddToLibrary.Enabled = false;
 
                 toolStripTotalTracks.Text = "0";
                 toolStripDuplicates.Text = "0";
+
+                toolStripProgressBar.Style = ProgressBarStyle.Continuous;
+                toolStripProgressBar.Value = 0;
             }
 
             if (state == FormState.FormStateID.CheckDuplicates)
@@ -74,6 +83,7 @@ namespace iTunes.Duplicate.Gui
                 btnCheckDuplicates.Enabled = true;
                 btnRemoveDuplicates.Enabled = false;
                 btnCopy.Enabled = false;
+                btnAddToLibrary.Enabled = false;
 
                 toolStripTotalTracks.Text = dgTracks.Rows.Count.ToString();
             }
@@ -84,6 +94,7 @@ namespace iTunes.Duplicate.Gui
                 btnCheckDuplicates.Enabled = false;
                 btnRemoveDuplicates.Enabled = true;
                 btnCopy.Enabled = false;
+                btnAddToLibrary.Enabled = false;
 
                 toolStripDuplicates.Text = GetDuplicateCount();
 
@@ -101,21 +112,26 @@ namespace iTunes.Duplicate.Gui
                 btnCheckDuplicates.Enabled = false;
                 btnRemoveDuplicates.Enabled = false;
                 btnCopy.Enabled = true;
+                btnAddToLibrary.Enabled = false;
 
                 dgTracks.DataSource = iTunesApp.Tracks;
                 dgTracks.Columns["Duplicate"].ReadOnly = true;
             }
 
-            if (state == FormState.FormStateID.CopyComplete)
+            if (state == FormState.FormStateID.ReadyToAddFiles)
             {
-                btnLoad.Enabled = true;
+                btnLoad.Enabled = false;
                 btnCheckDuplicates.Enabled = false;
                 btnRemoveDuplicates.Enabled = false;
                 btnCopy.Enabled = false;
+                btnAddToLibrary.Enabled = true;
 
                 toolStripProgressBar.Style = ProgressBarStyle.Continuous;
                 toolStripProgressBar.Value = 0;
+            }
 
+            if (state == FormState.FormStateID.WorkCompleted)
+            {
                 dgTracks.DataSource = null;
 
                 state = FormState.FormStateID.ReadyToProcess;
@@ -164,7 +180,7 @@ namespace iTunes.Duplicate.Gui
             {
                 if (e.Error == null)
                 {
-                    state = FormState.FormStateID.CopyComplete;
+                    state = FormState.FormStateID.ReadyToAddFiles;
                     ControlState();
                 }
                 else
@@ -186,6 +202,41 @@ namespace iTunes.Duplicate.Gui
             try
             {
                 iTunesApp.MoveToDestination(txtDestinationDir.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void bwAddFolder_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                if (e.Error == null)
+                {
+                    state = FormState.FormStateID.WorkCompleted;
+                    ControlState();
+                }
+                else
+                {
+                    toolStripProgressBar.Style = ProgressBarStyle.Continuous;
+                    toolStripProgressBar.Value = 0;
+                    Exception ex = new Exception(e.Error.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void bwAddFolder_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                iTunesApp.AddFolderToLibrary();
             }
             catch (Exception ex)
             {
@@ -249,6 +300,20 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
+        private void btnCheckDuplicates_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DisableButtons();
+                toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+                bwCheckLibrary.RunWorkerAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnCopy_Click(object sender, EventArgs e)
         {
             try
@@ -263,19 +328,20 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
-        private void btnCheckDuplicates_Click(object sender, EventArgs e)
+        private void btnAddToLibrary_Click(object sender, EventArgs e)
         {
             try
             {
                 DisableButtons();
                 toolStripProgressBar.Style = ProgressBarStyle.Marquee;
-                bwCheckLibrary.RunWorkerAsync();
+                bwAddFolder.RunWorkerAsync();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnBrowseDest_Click(object sender, EventArgs e)
         {
@@ -305,7 +371,8 @@ namespace iTunes.Duplicate.Gui
             CheckDuplicates,
             RemoveDuplicates,
             CopyDirectory,
-            CopyComplete,
+            ReadyToAddFiles,
+            WorkCompleted,
             Error
         }
     }

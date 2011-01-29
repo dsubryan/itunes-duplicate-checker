@@ -20,6 +20,11 @@ namespace iTunes.Duplicate.Gui
         private DirectoryInfo sourceDir;
         private System.Collections.Specialized.StringCollection collectionTitleFilters;
 
+        public iTunes()
+        {
+
+        }
+
         public iTunes(string sourceDirectory, string destinationDirectory, System.Collections.Specialized.StringCollection collectionTitleFilters)
         {
             destinationDir = new DirectoryInfo(destinationDirectory);
@@ -86,6 +91,60 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
+        public void AddFolderToLibrary()
+        {
+            StringBuilder folderPath = new StringBuilder();
+            folderPath.Append(destinationDir.FullName);
+
+            if (destinationDir.FullName.ToString().Substring(folderPath.Length - 1, 1) != "\\")
+                folderPath.Append("\\");
+
+            folderPath.Append(sourceDir.Name);
+
+            DirectoryInfo newPath = new DirectoryInfo(folderPath.ToString());
+            if (!newPath.Exists)
+            {
+                Exception ex = new Exception("Can not locate folder to import into library.");
+                throw ex;
+            }
+
+            FileInfo[] tracks = newPath.GetFiles("*.mp3");
+
+            foreach (FileInfo track in tracks)
+            {
+                if (!AddFileToLibrary(track.FullName))
+                {
+                    continue;
+                }
+            }
+        }
+
+        private bool AddFileToLibrary(string path)
+        {
+            try
+            {
+                iTunesAppClass iTunesLib = new iTunesAppClass();
+                IITOperationStatus status = iTunesLib.LibraryPlaylist.AddFile(path);
+
+                while (status.InProgress)
+                {
+                    System.Threading.Thread.Sleep(10);
+                }
+
+                if ((status.Tracks != null) && (status.Tracks.Count > 0))
+                {
+                    // successfully imported raw file without conversion
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return false;
+        }
+
         public void CheckLibraryForDuplicates()
         {
             try
@@ -125,7 +184,9 @@ namespace iTunes.Duplicate.Gui
                         state = State.StateID.TitlesEqual;
                 }
 
-                //2. Check if Times are same +- 2 seconds
+                //2. TODO: Check first two chars of artist are the same.
+
+                //3. Check if Times are same +- 2 seconds
                 if (state == State.StateID.TitlesEqual)
                 {
                     TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(trackName)];
@@ -301,6 +362,7 @@ namespace iTunes.Duplicate.Gui
             TimesEqual,
             ReadyToRemove,
             ReadyToCheckTitles,
+            ReadyToCheckArtists,
             Finished,
             Error
         }

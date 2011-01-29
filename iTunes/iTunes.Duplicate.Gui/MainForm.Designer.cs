@@ -34,6 +34,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgTracks = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnAddToLibrary = new System.Windows.Forms.Button();
             this.btnCheckDuplicates = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -96,6 +97,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnAddToLibrary);
             this.panel3.Controls.Add(this.btnCheckDuplicates);
             this.panel3.Controls.Add(this.btnCopy);
             this.panel3.Controls.Add(this.statusStrip1);
@@ -107,9 +109,19 @@
             this.panel3.Size = new System.Drawing.Size(973, 67);
             this.panel3.TabIndex = 1;
             // 
+            // btnAddToLibrary
+            // 
+            this.btnAddToLibrary.Location = new System.Drawing.Point(421, 16);
+            this.btnAddToLibrary.Name = "btnAddToLibrary";
+            this.btnAddToLibrary.Size = new System.Drawing.Size(91, 23);
+            this.btnAddToLibrary.TabIndex = 5;
+            this.btnAddToLibrary.Text = "Add";
+            this.btnAddToLibrary.UseVisualStyleBackColor = true;
+            this.btnAddToLibrary.Click += new System.EventHandler(this.btnAddToLibrary_Click);
+            // 
             // btnCheckDuplicates
             // 
-            this.btnCheckDuplicates.Location = new System.Drawing.Point(117, 16);
+            this.btnCheckDuplicates.Location = new System.Drawing.Point(115, 16);
             this.btnCheckDuplicates.Name = "btnCheckDuplicates";
             this.btnCheckDuplicates.Size = new System.Drawing.Size(91, 23);
             this.btnCheckDuplicates.TabIndex = 4;
@@ -119,7 +131,7 @@
             // 
             // btnCopy
             // 
-            this.btnCopy.Location = new System.Drawing.Point(325, 16);
+            this.btnCopy.Location = new System.Drawing.Point(319, 16);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(91, 23);
             this.btnCopy.TabIndex = 3;
@@ -174,7 +186,7 @@
             // 
             // btnRemoveDuplicates
             // 
-            this.btnRemoveDuplicates.Location = new System.Drawing.Point(221, 16);
+            this.btnRemoveDuplicates.Location = new System.Drawing.Point(217, 16);
             this.btnRemoveDuplicates.Name = "btnRemoveDuplicates";
             this.btnRemoveDuplicates.Size = new System.Drawing.Size(91, 23);
             this.btnRemoveDuplicates.TabIndex = 1;
@@ -270,7 +282,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(989, 739);
             this.Name = "iTunesForm";
-            this.Text = "iTunes";
+            this.Text = "iTunes Duplicate Checker";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgTracks)).EndInit();
@@ -309,6 +321,7 @@
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.Button btnCheckDuplicates;
+        private System.Windows.Forms.Button btnAddToLibrary;
     }
 }
 
