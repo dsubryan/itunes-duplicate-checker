@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTunes.Duplicate.Gui", "iTu
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "iTunes.Duplicate.Setup", "iTunes.Duplicate.Setup\iTunes.Duplicate.Setup.vdproj", "{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTunes.Duplicate.Console", "iTunes.Duplicate.Console\iTunes.Duplicate.Console.csproj", "{78587DF4-D340-42F9-8D00-0834B1996724}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,16 @@ Global
 		{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}.Release|Any CPU.ActiveCfg = Release
 		{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}.Release|Mixed Platforms.ActiveCfg = Release
 		{A561CA6C-5C4E-4619-A20F-3167BF8A51AD}.Release|x86.ActiveCfg = Release
+		{78587DF4-D340-42F9-8D00-0834B1996724}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{78587DF4-D340-42F9-8D00-0834B1996724}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{78587DF4-D340-42F9-8D00-0834B1996724}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{78587DF4-D340-42F9-8D00-0834B1996724}.Debug|x86.ActiveCfg = Debug|x86
+		{78587DF4-D340-42F9-8D00-0834B1996724}.Debug|x86.Build.0 = Debug|x86
+		{78587DF4-D340-42F9-8D00-0834B1996724}.Release|Any CPU.ActiveCfg = Release|x86
+		{78587DF4-D340-42F9-8D00-0834B1996724}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{78587DF4-D340-42F9-8D00-0834B1996724}.Release|Mixed Platforms.Build.0 = Release|x86
+		{78587DF4-D340-42F9-8D00-0834B1996724}.Release|x86.ActiveCfg = Release|x86
+		{78587DF4-D340-42F9-8D00-0834B1996724}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
