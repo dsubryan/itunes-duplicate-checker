@@ -314,6 +314,8 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
+
+
         private void CheckSourceDirectory(string sourceDirectory)
         {
             try
@@ -330,8 +332,8 @@ namespace iTunes.Duplicate.Gui
                     foreach (FileInfo track in arryTracks)
                     {
                         TagLib.File f = TagLib.File.Create(track.FullName);
-                        string title = f.Tag.Title.ToString();
-                        string artist = f.Tag.JoinedPerformers.ToString();
+                        string title = TitleCleanUp(f.Tag.Title);
+                        string artist = f.Tag.JoinedPerformers;
                         TimeSpan trackTime = f.Properties.Duration;
 
                         if (String.IsNullOrEmpty(title))
@@ -358,6 +360,22 @@ namespace iTunes.Duplicate.Gui
             {
                 throw ex;
             }
+        }
+
+        private string TitleCleanUp(string title)
+        {
+            if (title != null)
+            {
+                StringBuilder titleChar = new StringBuilder(title.Length);
+
+                foreach (char s in title)
+                {
+                    titleChar.Append(Char.IsControl(s) ? '\'' : s);
+                }
+
+                return titleChar.ToString();
+            }
+            return null;
         }
 
         private string FormatArtists(string artist)
