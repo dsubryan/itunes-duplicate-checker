@@ -332,8 +332,8 @@ namespace iTunes.Duplicate.Gui
                     foreach (FileInfo track in arryTracks)
                     {
                         TagLib.File f = TagLib.File.Create(track.FullName);
-                        string title = TitleCleanUp(f.Tag.Title);
-                        string artist = f.Tag.JoinedPerformers;
+                        string title = StringCleanUp(f.Tag.Title);
+                        string artist = StringCleanUp(f.Tag.JoinedPerformers);
                         TimeSpan trackTime = f.Properties.Duration;
 
                         if (String.IsNullOrEmpty(title))
@@ -362,7 +362,7 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
-        private string TitleCleanUp(string title)
+        private string StringCleanUp(string title)
         {
             if (title != null)
             {
