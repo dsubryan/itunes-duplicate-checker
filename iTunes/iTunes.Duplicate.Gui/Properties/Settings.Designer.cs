@@ -52,11 +52,14 @@ namespace iTunes.Duplicate.Gui.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <string>'</string>
+  <string>’</string>
+  <string>`</string>
   <string>(Radio)</string>
   <string>(Main)</string>
   <string>(PO Clean Edit)</string>
   <string>(Clean)</string>
   <string>(Original)</string>
+  <string>(Original Mix Edit)</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection TitleFilters {
             get {

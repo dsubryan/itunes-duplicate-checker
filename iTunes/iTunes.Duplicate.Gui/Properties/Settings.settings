@@ -12,11 +12,14 @@
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;'&lt;/string&gt;
+  &lt;string&gt;’&lt;/string&gt;
+  &lt;string&gt;`&lt;/string&gt;
   &lt;string&gt;(Radio)&lt;/string&gt;
   &lt;string&gt;(Main)&lt;/string&gt;
   &lt;string&gt;(PO Clean Edit)&lt;/string&gt;
   &lt;string&gt;(Clean)&lt;/string&gt;
   &lt;string&gt;(Original)&lt;/string&gt;
+  &lt;string&gt;(Original Mix Edit)&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>
