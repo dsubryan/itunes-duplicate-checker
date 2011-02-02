@@ -185,7 +185,7 @@ namespace iTunes.Duplicate.Gui
                         string trackName = FormatTitle(tracks[i].Name);
                         string trackArtist = FormatArtists(tracks[i].Artist);
                         TimeSpan trackTime = FormatTime(tracks[i].Time);
-                        CheckDuplicate(trackName, trackArtist, trackTime);
+                        CheckDuplicate(trackName.Trim(), trackArtist.Trim(), trackTime);
                     }
                 }
             }
@@ -225,7 +225,7 @@ namespace iTunes.Duplicate.Gui
                     TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(trackName)];
                     TimeSpan difference = trackLength.Subtract(libraryTrackLength);
 
-                    if (difference.Seconds <= 2)
+                    if (difference.TotalSeconds <= 2)
                     {
                         foreach (Track track in Tracks)
                         {
