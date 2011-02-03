@@ -214,6 +214,7 @@ namespace iTunes.Duplicate.Gui
                         {
                             Track track = (Track)Tracks[arryTrackTitles.IndexOf(title)];
                             track.Duplicate = true;
+                            break;
                         }
                     }
                 }
