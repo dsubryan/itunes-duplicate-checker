@@ -175,38 +175,59 @@ namespace iTunes.Duplicate.Gui
         {
             State.StateID state = new State.StateID();
             IITTrackCollection resultTracks = null;
+            StringBuilder newTrackTitle;
+            string newTitle = null;
 
             foreach (string title in arryTrackTitles)
             {
+                if (title.Contains('(') && title.Contains(')'))
+                {
+                    int start = title.IndexOf("("); //16
+                    int end = title.IndexOf(")"); //36
+                    newTrackTitle = new StringBuilder(title.Substring(0, start).Trim());
+                }
+                else
+                    newTrackTitle = new StringBuilder(title.Trim());
+
+                newTrackTitle.Append(" ");
+                newTrackTitle.Append(FormatArtists(arryTrackArtists[arryTrackTitles.IndexOf(title)].ToString()));
+
                 state = State.StateID.ReadyToCheckTitles;
 
                 if (state == State.StateID.ReadyToCheckTitles)
                 {
-                    resultTracks = Search(title, ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
+                    resultTracks = Search(newTrackTitle.ToString(), ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
                     if (resultTracks != null)
-                        state = State.StateID.ReadyToParseTracks;
-                }
-
-                if (state == State.StateID.ReadyToParseTracks)
-                {
-                    foreach (IITTrack track in resultTracks)
-                    {
-                        TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(track.Name)];
-                        //TimeSpan difference = trackLength.Subtract(track.Time);
-                    }
+                        state = State.StateID.ReadyToCheckTime;
                 }
 
                 if (state == State.StateID.ReadyToCheckTime)
                 {
+                    foreach (IITTrack resultTrack in resultTracks)
+                    {
+                        TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(title)];
+                        TimeSpan libraryTrackLengh = FormatTrackTime(resultTrack.Time);
 
+                        TimeSpan difference = trackLength.Subtract(libraryTrackLengh);
+
+                        if (difference.TotalSeconds <= 2)
+                        {
+                            Track track = (Track)Tracks[arryTrackTitles.IndexOf(title)];
+                            track.Duplicate = true;
+                        }
+                    }
                 }
-
-
-
             }
+        }
 
+        private TimeSpan FormatTrackTime(string trackTime)
+        {
+            TimeSpan trackLength = TimeSpan.Parse(trackTime);
 
-
+            if (trackLength.TotalHours >= 1)
+                return TimeSpan.Parse("00:" + trackTime);
+            else
+                return trackLength;
         }
 
         public void CheckLibraryForDuplicates()
