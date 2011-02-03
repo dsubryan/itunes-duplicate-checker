@@ -11,9 +11,11 @@ namespace iTunes.Duplicate.Console
     {
         static void Main(string[] args)
         {
-            string searchString = "hold's it against me";
+            string searchString = "right round fl";
             Gui.iTunes iTunesApp = new Gui.iTunes();
-            System.Console.WriteLine(iTunesApp.Search(searchString, ITPlaylistSearchField.ITPlaylistSearchFieldVisible).ToString());
+            iTunesApp.CheckLibraryForDuplicates(searchString);
+
+            //System.Console.WriteLine(iTunesApp.Search(searchString, ITPlaylistSearchField.ITPlaylistSearchFieldVisible).ToString());
         }
     }
 }

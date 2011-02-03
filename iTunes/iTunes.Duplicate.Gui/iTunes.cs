@@ -152,23 +152,54 @@ namespace iTunes.Duplicate.Gui
         /// <param name="searchText"></param>
         /// <param name="searchFields"></param>
         /// <returns></returns>
-        public bool Search(string searchText, ITPlaylistSearchField searchFields)
+        public IITTrackCollection Search(string searchText, ITPlaylistSearchField searchFields)
         {
             iTunesAppClass iTunesLib = new iTunesAppClass();
             IITTrackCollection results = iTunesLib.LibraryPlaylist.Search(searchText, searchFields);
 
             if (results != null)
             {
-                foreach (IITTrack track in results)
+                return results;
+                //foreach (IITTrack track in results)
+                //{
+                //    if (track != null)
+                //    {
+                //        return true;
+                //    }
+                //}
+            }
+            return null;
+        }
+
+        public void CheckLibraryForDuplicates(string searchText)
+        {
+            State.StateID state = new State.StateID();
+            state = State.StateID.ReadyToCheckTitles;
+            IITTrackCollection resultTracks = null;
+
+            if (state == State.StateID.ReadyToCheckTitles)
+            {
+                resultTracks = Search(searchText, ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
+                if (resultTracks != null)
+                    state = State.StateID.ReadyToParseTracks;
+            }
+
+            if (state == State.StateID.ReadyToParseTracks)
+            {
+                foreach (Track track in resultTracks)
                 {
-                    if (track != null)
-                    {
-                        return true;
-                    }
+
                 }
             }
-            return false;
+
+            if (state == State.StateID.ReadyToCheckTime)
+            {
+
+            }
+
+
         }
+
         public void CheckLibraryForDuplicates()
         {
             try
@@ -194,8 +225,6 @@ namespace iTunes.Duplicate.Gui
                 throw ex;
             }
         }
-
-
 
         private void CheckDuplicate(string trackName, string trackArtist, TimeSpan libraryTrackLength)
         {
@@ -426,11 +455,12 @@ namespace iTunes.Duplicate.Gui
     {
         public enum StateID
         {
-            ReadyToCheckTime,
             TimesEqual,
             ReadyToRemove,
             ReadyToCheckTitles,
+            ReadyToParseTracks,
             ReadyToCheckArtists,
+            ReadyToCheckTime,
             Finished,
             Error
         }
