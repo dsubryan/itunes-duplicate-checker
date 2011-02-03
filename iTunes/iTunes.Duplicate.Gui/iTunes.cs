@@ -152,7 +152,7 @@ namespace iTunes.Duplicate.Gui
         /// <param name="searchText"></param>
         /// <param name="searchFields"></param>
         /// <returns></returns>
-        public IITTrackCollection Search(string searchText, ITPlaylistSearchField searchFields)
+        private IITTrackCollection Search(string searchText, ITPlaylistSearchField searchFields)
         {
             iTunesAppClass iTunesLib = new iTunesAppClass();
             IITTrackCollection results = iTunesLib.LibraryPlaylist.Search(searchText, searchFields);
@@ -174,28 +174,37 @@ namespace iTunes.Duplicate.Gui
         public void CheckLibraryForDuplicates(string searchText)
         {
             State.StateID state = new State.StateID();
-            state = State.StateID.ReadyToCheckTitles;
             IITTrackCollection resultTracks = null;
 
-            if (state == State.StateID.ReadyToCheckTitles)
+            foreach (string title in arryTrackTitles)
             {
-                resultTracks = Search(searchText, ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
-                if (resultTracks != null)
-                    state = State.StateID.ReadyToParseTracks;
-            }
+                state = State.StateID.ReadyToCheckTitles;
 
-            if (state == State.StateID.ReadyToParseTracks)
-            {
-                foreach (Track track in resultTracks)
+                if (state == State.StateID.ReadyToCheckTitles)
+                {
+                    resultTracks = Search(title, ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
+                    if (resultTracks != null)
+                        state = State.StateID.ReadyToParseTracks;
+                }
+
+                if (state == State.StateID.ReadyToParseTracks)
+                {
+                    foreach (IITTrack track in resultTracks)
+                    {
+                        TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(track.Name)];
+                        //TimeSpan difference = trackLength.Subtract(track.Time);
+                    }
+                }
+
+                if (state == State.StateID.ReadyToCheckTime)
                 {
 
                 }
-            }
 
-            if (state == State.StateID.ReadyToCheckTime)
-            {
+
 
             }
+
 
 
         }

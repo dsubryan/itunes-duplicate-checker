@@ -11,11 +11,12 @@ namespace iTunes.Duplicate.Console
     {
         static void Main(string[] args)
         {
-            string searchString = "right round fl";
-            Gui.iTunes iTunesApp = new Gui.iTunes();
+            string searchString = "dog days flo";
+            string sourceDirectory = @"C:\Users\subryad\Downloads\VA-Hed_Kandi_Presents_Athmes_and_Artwork-(HEDK001BOX)-4CD-Retail-2011-HFT";
+            string destinationDirectory = @"C:\";
+            Gui.iTunes iTunesApp = new Gui.iTunes(sourceDirectory, destinationDirectory, Properties.Settings.Default.TitleFilters);
             iTunesApp.CheckLibraryForDuplicates(searchString);
 
-            //System.Console.WriteLine(iTunesApp.Search(searchString, ITPlaylistSearchField.ITPlaylistSearchFieldVisible).ToString());
         }
     }
 }
