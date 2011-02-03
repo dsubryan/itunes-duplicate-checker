@@ -13,13 +13,14 @@ namespace iTunes.Duplicate.Gui
         private DateTime trackTime;
         private bool duplicate;
         private string path;
+        private string searchText;
 
         public Track()
         {
 
         }
 
-        public Track(string title, string artist, TimeSpan time, string path, bool duplicate)
+        public Track(string title, string artist, TimeSpan time, string path, bool duplicate, string searchText)
         {
             this.title = title;
             this.artist = artist;
@@ -27,6 +28,7 @@ namespace iTunes.Duplicate.Gui
             this.path = path;
             this.duplicate = duplicate;
             trackTime = new DateTime(time.Ticks);
+            this.searchText = searchText;
         }
 
         public bool Duplicate
@@ -49,14 +51,16 @@ namespace iTunes.Duplicate.Gui
         {
             get { return trackTime.ToString("mm:ss"); }
         }
+
+        public string SearchText
+        {
+            get { return searchText; }
+        }
         
         public string Path
         {
             get { return path; }
         }
-
-
-            
 
     }
 }

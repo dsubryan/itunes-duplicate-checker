@@ -69,6 +69,7 @@ namespace iTunes.Duplicate.Gui
                         TagLib.File f = TagLib.File.Create(track.FullName);
                         string title = StringCleanUp(f.Tag.Title);
                         string artist = StringCleanUp(f.Tag.JoinedPerformers);
+                        string searchText = FormatSearchText(title, artist);
                         TimeSpan trackTime = f.Properties.Duration;
 
                         if (String.IsNullOrEmpty(title))
@@ -80,7 +81,8 @@ namespace iTunes.Duplicate.Gui
                         arryTrackTitles.Add(title);
                         arryTrackArtists.Add(artist);
                         arryTrackLength.Add(trackTime);
-                        Tracks.Add(new Track(FormatTitle(title), artist, trackTime, track.FullName, false));
+                        arrySearch.Add(searchText);
+                        Tracks.Add(new Track(title, artist, trackTime, track.FullName, false, searchText));
                     }
                 }
                 else
@@ -89,7 +91,6 @@ namespace iTunes.Duplicate.Gui
                     throw ex;
                 }
 
-                arrySearch = FormatSearchText();
                 arryTrackTitles = FormatTitle();
             }
             catch (Exception ex)
@@ -272,50 +273,45 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
-        private ArrayList FormatSearchText()
+        private string FormatSearchText(string trackTitle, string artist)
         {
-            ArrayList searchText = new ArrayList();
-            foreach (string trackTitle in arryTrackTitles)
+            string noBracketTitle = FormatTrackTitle(trackTitle);
+
+            string[] arryTitle = noBracketTitle.Split(' ');
+            StringBuilder newTitle = new StringBuilder();
+
+            if (!noBracketTitle.Contains('\''))
             {
-                string noBracketTitle = FormatTrackTitle(trackTitle);
-
-                string[] arryTitle = noBracketTitle.Split(' ');
-                StringBuilder newTitle = new StringBuilder();
-
-                if (!noBracketTitle.Contains('\''))
+                newTitle.Append(noBracketTitle);
+                newTitle.Append(" ");
+            }
+            else
+            {
+                foreach (string title in arryTitle)
                 {
-                    newTitle.Append(noBracketTitle);
-                    newTitle.Append(" ");
-                }
-                else
-                {
-                    foreach (string title in arryTitle)
+                    if (!title.Contains('\''))
                     {
-                        if (!title.Contains('\''))
+                        newTitle.Append(title);
+                        newTitle.Append(" ");
+                        break;
+                    }
+
+                    int index = 0;
+                    foreach (char s in title)
+                    {
+                        if (s == '\'')
                         {
-                            newTitle.Append(title);
+                            newTitle.Append(title.Substring(0, index));
                             newTitle.Append(" ");
                             break;
                         }
-
-                        int index = 0;
-                        foreach (char s in title)
-                        {
-                            if (s == '\'')
-                            {
-                                newTitle.Append(title.Substring(0, index));
-                                newTitle.Append(" ");
-                                break;
-                            }
-                            index++;
-                        }
+                        index++;
                     }
                 }
-
-                newTitle.Append(FormatArtist(arryTrackArtists[arryTrackTitles.IndexOf(trackTitle)].ToString()));
-                searchText.Add(newTitle.ToString());
             }
-            return searchText;
+
+            newTitle.Append(FormatArtist(artist));
+            return newTitle.ToString();
         }
 
         private string FormatTrackTitle(string title)

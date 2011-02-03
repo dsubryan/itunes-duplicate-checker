@@ -85,6 +85,7 @@ namespace iTunes.Duplicate.Gui
                 btnCopy.Enabled = false;
                 btnAddToLibrary.Enabled = false;
 
+                dgTracks.Columns["Path"].Visible = false;
                 toolStripTotalTracks.Text = dgTracks.Rows.Count.ToString();
             }
 
@@ -103,6 +104,7 @@ namespace iTunes.Duplicate.Gui
 
                 dgTracks.DataSource = null;
                 dgTracks.DataSource = iTunesApp.Tracks;
+                dgTracks.Columns["Path"].Visible = false;
                 dgTracks.Columns["Duplicate"].ReadOnly = false;
             }
 
@@ -115,6 +117,7 @@ namespace iTunes.Duplicate.Gui
                 btnAddToLibrary.Enabled = false;
 
                 dgTracks.DataSource = iTunesApp.Tracks;
+                dgTracks.Columns["Path"].Visible = false;
                 dgTracks.Columns["Duplicate"].ReadOnly = true;
             }
 

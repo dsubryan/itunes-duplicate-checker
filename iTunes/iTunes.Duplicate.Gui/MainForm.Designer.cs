@@ -86,12 +86,14 @@
             this.dgTracks.AllowUserToAddRows = false;
             this.dgTracks.AllowUserToDeleteRows = false;
             this.dgTracks.AllowUserToResizeRows = false;
-            this.dgTracks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgTracks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgTracks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgTracks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgTracks.Location = new System.Drawing.Point(0, 0);
             this.dgTracks.MultiSelect = false;
             this.dgTracks.Name = "dgTracks";
+            this.dgTracks.RowHeadersVisible = false;
+            this.dgTracks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTracks.Size = new System.Drawing.Size(973, 561);
             this.dgTracks.TabIndex = 2;
             // 
