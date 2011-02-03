@@ -89,7 +89,7 @@ namespace iTunes.Duplicate.Gui
                     throw ex;
                 }
 
-                FormatSearchText();
+                arrySearch = FormatSearchText();
                 arryTrackTitles = FormatTitle();
             }
             catch (Exception ex)
@@ -119,21 +119,14 @@ namespace iTunes.Duplicate.Gui
         {
             State.StateID state = new State.StateID();
             IITTrackCollection resultTracks = null;
-            string newTrackTitle = null;
 
-            foreach (string title in arryTrackTitles)
+            foreach (string title in arrySearch)
             {
-                state = State.StateID.ReadyToCheckTitles;
-
-                if (state == State.StateID.ReadyToCheckTitles)
-                {
-                    newTrackTitle = FormatTrackTitle(title);
-                    state = State.StateID.ReadyToSearchTitles;
-                }
+                state = State.StateID.ReadyToSearchTitles;
 
                 if (state == State.StateID.ReadyToSearchTitles)
                 {
-                    resultTracks = Search(newTrackTitle, ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
+                    resultTracks = Search(title, ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
                     if (resultTracks != null)
                         state = State.StateID.ReadyToCheckTime;
                 }
@@ -142,14 +135,14 @@ namespace iTunes.Duplicate.Gui
                 {
                     foreach (IITTrack resultTrack in resultTracks)
                     {
-                        TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(title)];
+                        TimeSpan trackLength = (TimeSpan)arryTrackLength[arrySearch.IndexOf(title)];
                         TimeSpan libraryTrackLengh = FormatTrackTime(resultTrack.Time);
 
                         TimeSpan difference = trackLength.Subtract(libraryTrackLengh);
 
                         if (difference.TotalSeconds <= 2)
                         {
-                            Track track = (Track)Tracks[arryTrackTitles.IndexOf(title)];
+                            Track track = (Track)Tracks[arrySearch.IndexOf(title)];
                             track.Duplicate = true;
                             break;
                         }
@@ -222,7 +215,7 @@ namespace iTunes.Duplicate.Gui
                     destDirName.Append("\\");
 
                 destDirName.Append(sourceDir.Name);
-                copyDirectory(sourceDir.FullName, destDirName.ToString());
+                CopyDirectory(sourceDir.FullName, destDirName.ToString());
                 sourceDir.Delete(true);
             }
             catch (Exception ex)
@@ -231,7 +224,7 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
-        public static void copyDirectory(string Src, string Dst)
+        private static void CopyDirectory(string Src, string Dst)
         {
             try
             {
@@ -245,7 +238,7 @@ namespace iTunes.Duplicate.Gui
                 {
                     // Sub directories
                     if (Directory.Exists(Element))
-                        copyDirectory(Element, Dst + Path.GetFileName(Element));
+                        CopyDirectory(Element, Dst + Path.GetFileName(Element));
                     // Files in directory
                     else
                         System.IO.File.Copy(Element, Dst + Path.GetFileName(Element), true);
@@ -279,26 +272,9 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
-
-
-        private string StringCleanUp(string title)
+        private ArrayList FormatSearchText()
         {
-            if (title != null)
-            {
-                StringBuilder titleChar = new StringBuilder(title.Length);
-
-                foreach (char s in title)
-                {
-                    titleChar.Append(Char.IsControl(s) ? '\'' : s);
-                }
-
-                return titleChar.ToString();
-            }
-            return null;
-        }
-
-        private string FormatSearchText()
-        {
+            ArrayList searchText = new ArrayList();
             foreach (string trackTitle in arryTrackTitles)
             {
                 string noBracketTitle = FormatTrackTitle(trackTitle);
@@ -315,6 +291,13 @@ namespace iTunes.Duplicate.Gui
                 {
                     foreach (string title in arryTitle)
                     {
+                        if (!title.Contains('\''))
+                        {
+                            newTitle.Append(title);
+                            newTitle.Append(" ");
+                            break;
+                        }
+
                         int index = 0;
                         foreach (char s in title)
                         {
@@ -322,6 +305,7 @@ namespace iTunes.Duplicate.Gui
                             {
                                 newTitle.Append(title.Substring(0, index));
                                 newTitle.Append(" ");
+                                break;
                             }
                             index++;
                         }
@@ -329,8 +313,9 @@ namespace iTunes.Duplicate.Gui
                 }
 
                 newTitle.Append(FormatArtist(arryTrackArtists[arryTrackTitles.IndexOf(trackTitle)].ToString()));
+                searchText.Add(newTitle.ToString());
             }
-            return null;
+            return searchText;
         }
 
         private string FormatTrackTitle(string title)
@@ -345,9 +330,6 @@ namespace iTunes.Duplicate.Gui
             }
             else
                 newTrackTitle = new StringBuilder(title.Trim());
-
-            //newTrackTitle.Append(" ");
-            //newTrackTitle.Append(FormatArtist(arryTrackArtists[arryTrackTitles.IndexOf(title)].ToString()));
 
             return newTrackTitle.ToString();
         }
@@ -403,12 +385,19 @@ namespace iTunes.Duplicate.Gui
                 if (artist.Length > 2)
                 {
                     string[] artistSplit = artist.Split(' ');
+
+                    if (artistSplit[0].Contains('\''))
+                    {
+                        int index = artistSplit[0].IndexOf('\'');
+                        return artistSplit[0].Substring(0, index);
+                    }
+
                     return artistSplit[0];
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                return artist;
             }
             return artist;
         }
@@ -421,6 +410,22 @@ namespace iTunes.Duplicate.Gui
                 return TimeSpan.Parse("00:" + trackTime);
             else
                 return trackLength;
+        }
+
+        private string StringCleanUp(string title)
+        {
+            if (title != null)
+            {
+                StringBuilder titleChar = new StringBuilder(title.Length);
+
+                foreach (char s in title)
+                {
+                    titleChar.Append(Char.IsControl(s) ? '\'' : s);
+                }
+
+                return titleChar.ToString();
+            }
+            return null;
         }
 
         [Obsolete("Use FormatArtist function instead.",true)]
