@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(iTunesForm));
             this.sourceFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -55,11 +55,17 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDuplicates = new System.Windows.Forms.ToolStripStatusLabel();
             this.destinationFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripTotalTracks1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripDuplicates1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTracks)).BeginInit();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,8 +94,8 @@
             this.dgTracks.AllowUserToAddRows = false;
             this.dgTracks.AllowUserToDeleteRows = false;
             this.dgTracks.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dgTracks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightCyan;
+            this.dgTracks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgTracks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgTracks.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgTracks.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -190,6 +196,12 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar1,
+            this.toolStripStatusLabel2,
+            this.toolStripTotalTracks1,
+            this.toolStripStatusLabel5,
+            this.toolStripDuplicates1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 45);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(973, 22);
@@ -302,6 +314,35 @@
             this.toolStripDuplicates.Size = new System.Drawing.Size(13, 17);
             this.toolStripDuplicates.Text = "0";
             // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(77, 17);
+            this.toolStripStatusLabel2.Text = "Total Tracks: ";
+            // 
+            // toolStripTotalTracks1
+            // 
+            this.toolStripTotalTracks1.Name = "toolStripTotalTracks1";
+            this.toolStripTotalTracks1.Size = new System.Drawing.Size(13, 17);
+            this.toolStripTotalTracks1.Text = "0";
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(68, 17);
+            this.toolStripStatusLabel5.Text = "Duplicates: ";
+            // 
+            // toolStripDuplicates1
+            // 
+            this.toolStripDuplicates1.Name = "toolStripDuplicates1";
+            this.toolStripDuplicates1.Size = new System.Drawing.Size(13, 17);
+            this.toolStripDuplicates1.Text = "0";
+            // 
             // iTunesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,6 +359,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -351,6 +394,11 @@
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.Button btnRemoveDuplicates;
         private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripTotalTracks1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripDuplicates1;
     }
 }
 

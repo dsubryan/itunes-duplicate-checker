@@ -70,11 +70,11 @@ namespace iTunes.Duplicate.Gui
                 btnCopy.Enabled = false;
                 btnAddToLibrary.Enabled = false;
 
-                toolStripTotalTracks.Text = "0";
-                toolStripDuplicates.Text = "0";
+                toolStripTotalTracks1.Text = "0";
+                toolStripDuplicates1.Text = "0";
 
-                toolStripProgressBar.Style = ProgressBarStyle.Continuous;
-                toolStripProgressBar.Value = 0;
+                toolStripProgressBar1.Style = ProgressBarStyle.Continuous;
+                toolStripProgressBar1.Value = 0;
             }
 
             if (state == FormState.FormStateID.CheckDuplicates)
@@ -86,7 +86,7 @@ namespace iTunes.Duplicate.Gui
                 btnAddToLibrary.Enabled = false;
 
                 dgTracks.Columns["Path"].Visible = false;
-                toolStripTotalTracks.Text = dgTracks.Rows.Count.ToString();
+                toolStripTotalTracks1.Text = dgTracks.Rows.Count.ToString();
             }
 
             if (state == FormState.FormStateID.RemoveDuplicates)
@@ -97,10 +97,10 @@ namespace iTunes.Duplicate.Gui
                 btnCopy.Enabled = false;
                 btnAddToLibrary.Enabled = false;
 
-                toolStripDuplicates.Text = GetDuplicateCount();
+                toolStripDuplicates1.Text = GetDuplicateCount();
 
-                toolStripProgressBar.Style = ProgressBarStyle.Continuous;
-                toolStripProgressBar.Value = 0;
+                toolStripProgressBar1.Style = ProgressBarStyle.Continuous;
+                toolStripProgressBar1.Value = 0;
 
                 dgTracks.DataSource = null;
                 dgTracks.DataSource = iTunesApp.Tracks;
@@ -129,8 +129,8 @@ namespace iTunes.Duplicate.Gui
                 btnCopy.Enabled = false;
                 btnAddToLibrary.Enabled = true;
 
-                toolStripProgressBar.Style = ProgressBarStyle.Continuous;
-                toolStripProgressBar.Value = 0;
+                toolStripProgressBar1.Style = ProgressBarStyle.Continuous;
+                toolStripProgressBar1.Value = 0;
             }
 
             if (state == FormState.FormStateID.WorkCompleted)
@@ -153,8 +153,8 @@ namespace iTunes.Duplicate.Gui
                 }
                 else
                 {
-                    toolStripProgressBar.Style = ProgressBarStyle.Continuous;
-                    toolStripProgressBar.Value = 0;
+                    toolStripProgressBar1.Style = ProgressBarStyle.Continuous;
+                    toolStripProgressBar1.Value = 0;
                     Exception ex = new Exception(e.Error.Message);
                 }
             }
@@ -188,8 +188,8 @@ namespace iTunes.Duplicate.Gui
                 }
                 else
                 {
-                    toolStripProgressBar.Style = ProgressBarStyle.Continuous;
-                    toolStripProgressBar.Value = 0;
+                    toolStripProgressBar1.Style = ProgressBarStyle.Continuous;
+                    toolStripProgressBar1.Value = 0;
                     Exception ex = new Exception(e.Error.Message);
                 }
             }
@@ -223,8 +223,8 @@ namespace iTunes.Duplicate.Gui
                 }
                 else
                 {
-                    toolStripProgressBar.Style = ProgressBarStyle.Continuous;
-                    toolStripProgressBar.Value = 0;
+                    toolStripProgressBar1.Style = ProgressBarStyle.Continuous;
+                    toolStripProgressBar1.Value = 0;
                     Exception ex = new Exception(e.Error.Message);
                 }
             }
@@ -308,7 +308,7 @@ namespace iTunes.Duplicate.Gui
             try
             {
                 DisableButtons();
-                toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+                toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
                 bwCheckLibrary.RunWorkerAsync();
             }
             catch (Exception ex)
@@ -322,7 +322,7 @@ namespace iTunes.Duplicate.Gui
             try
             {
                 DisableButtons();
-                toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+                toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
                 bwMoveFolder.RunWorkerAsync();
             }
             catch (Exception ex)
@@ -336,7 +336,7 @@ namespace iTunes.Duplicate.Gui
             try
             {
                 DisableButtons();
-                toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+                toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
                 bwAddFolder.RunWorkerAsync();
             }
             catch (Exception ex)
