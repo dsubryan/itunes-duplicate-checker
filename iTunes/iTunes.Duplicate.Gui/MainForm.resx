@@ -120,6 +120,24 @@
   <metadata name="sourceFolderDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>157, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnLoad.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAKwSURBVDhPndNrSJNRGAdwQzJJughdlAwrrL6ICRpoZdrVvBQ5IywjFdOMCjJBzA9JipGKRhmo
+        GKVmtjRyiHeXt7WLpum85EwtXZubur3vtndz7zbz3xsYJBOMDvx5Dpzn+XHgcGxslpaFag+hNXUJtKYh
+        jNZwfU0kd7dJ3bj+z/mq1Wz4/MpiEMKsrQdNvGNStbgUDa1mj9DE23aTto5NKSvvroiZdKKihfkBLBiZ
+        6IUwkdUwql4zqcD8TAGMajazZ4OYzB+lVR1uVohB1ZxroQSwUCKYNfVM5cEwVwPDdD708scwKItByfMx
+        3P0CSnHSbWtA+T7dTDbCTDbDNFcBi7YV4z3ZaOPEg5rKgl6aA2ryIcSiN5DyL8VaAXrpsxRaWQbTLBu0
+        4jlMKg4k/FSwC8Kg/ZoC3VgqSEkSJgarMcENjLACxnhxt/SjdzD/PQNGWSGDlGDow02U5h4FIY4GORgP
+        YiAOX7rL8YMfedYKmOJHx1BD10ANx8MwngbjZB4GmqJQnOGOWcEpzAkDMdcVitHGk+39TbHOVoBCGHlR
+        13cZuv4r0ImvQi9Jhrj2Aoruu0HZ5oOZjkOY6TwCSY139orPKGk4F6rpPg/tJxa0PeHQ9kagnxOEwnsu
+        mG5yh6LZA4oWTyRGbstiAAcmtssgSe2ZAFIQCFIQBI0wGBpRCIbrw/EkcQvGqlwhr90DeZ0brrMcnzKD
+        rkzslwFy7umDRIc/iM4AELxjIHknIBPnoSxjL4bKtkJW7QQZxxmRgQ6FzOAuJmuWAdxCr+3farz71K0+
+        ULf5gmg7jPGuRyhJ2/lzpHTDorRyE6RVm8Hys8uxuv7fUnm6W3BvmftHVYsXJjsTFlkhB6IyYtY6vkxe
+        t78kxd7vuKet06of63dDZsIO/8wbLg889m20+6eB/236BQqZwH9e57EZAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>496, 17</value>
   </metadata>
@@ -129,7 +147,6 @@
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>47</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAYAAAAAAAEAIACifwIAZgAAAAAAAAABACAAsBsBAAiAAgCAgAAAAQAgACgIAQC4mwMAMDAAAAEA

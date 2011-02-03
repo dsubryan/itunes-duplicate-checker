@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_1C7892EFF234429095A162CB330A31FC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5641C11A1CE94A5090C87982226FE77C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -39,20 +45,38 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_796B56705CFAE939BD836FF6AD68B4D7"
+        "MsmKey" = "8:_C5285D8F751641BB8F3949872444F0FD"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5641C11A1CE94A5090C87982226FE77C"
+        "MsmKey" = "8:_CAD972C3233D443BBAD3548438281226"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E17174BF168F4F55812A7FBE65E28095"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E6A8E72E78C848F0910427787BAE6FD8"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6524BDA6894048BA9D27C3F02E0897F5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5641C11A1CE94A5090C87982226FE77C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -73,6 +97,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -89,6 +121,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -118,6 +158,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C7892EFF234429095A162CB330A31FC"
+            {
+            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\Resources\\Folder-icon.png"
+            "TargetName" = "8:Folder-icon.png"
+            "Tag" = "8:"
+            "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5641C11A1CE94A5090C87982226FE77C"
             {
             "AssemblyRegister" = "3:1"
@@ -149,21 +209,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_796B56705CFAE939BD836FF6AD68B4D7"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C16188A0048A45568454A7A134AAAB55"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:taglib-sharp, Version=2.0.3.7, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_796B56705CFAE939BD836FF6AD68B4D7"
-                    {
-                    "Name" = "8:taglib-sharp.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:taglib-sharp.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\Resources\\itunes.ico"
+            "TargetName" = "8:itunes.ico"
             "Tag" = "8:"
             "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
             "Condition" = "8:"
@@ -177,13 +226,73 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C16188A0048A45568454A7A134AAAB55"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C5285D8F751641BB8F3949872444F0FD"
             {
-            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\Resources\\itunes.ico"
-            "TargetName" = "8:itunes.ico"
+            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\Resources\\iTunes10.png"
+            "TargetName" = "8:iTunes10.png"
+            "Tag" = "8:"
+            "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CAD972C3233D443BBAD3548438281226"
+            {
+            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\Resources\\copy.png"
+            "TargetName" = "8:copy.png"
+            "Tag" = "8:"
+            "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E17174BF168F4F55812A7FBE65E28095"
+            {
+            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\Resources\\Search.png"
+            "TargetName" = "8:Search.png"
+            "Tag" = "8:"
+            "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E6A8E72E78C848F0910427787BAE6FD8"
+            {
+            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\Resources\\Remove.png"
+            "TargetName" = "8:Remove.png"
             "Tag" = "8:"
             "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
             "Condition" = "8:"
@@ -792,7 +901,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6524BDA6894048BA9D27C3F02E0897F5"
             {
-            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\obj\\x86\\Debug\\iTunes Duplicate Checker.exe"
+            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\obj\\x86\\Release\\iTunes Duplicate Checker.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
