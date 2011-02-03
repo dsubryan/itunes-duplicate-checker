@@ -13,6 +13,7 @@ namespace iTunes.Duplicate.Gui
     public class iTunes
     {
         private FileInfo[] arryTracks;
+        private ArrayList arrySearch;
         private ArrayList arryTrackTitles;
         private ArrayList arryTrackArtists;
         private ArrayList arryTrackLength;
@@ -48,18 +49,48 @@ namespace iTunes.Duplicate.Gui
             CheckSourceDirectory(sourceDirectory);
         }
 
-        private string FormatTitle(string trackTitle)
+        private void CheckSourceDirectory(string sourceDirectory)
         {
             try
             {
-                StringBuilder newTitle = new StringBuilder(trackTitle);
+                arryTrackTitles = new ArrayList();
+                arryTrackArtists = new ArrayList();
+                arryTrackLength = new ArrayList();
+                arrySearch = new ArrayList();
 
-                foreach (string filter in collectionTitleFilters)
+                DirectoryInfo sourceDir = new DirectoryInfo(sourceDirectory);
+                arryTracks = sourceDir.GetFiles("*.mp3");
+
+                if (arryTracks.Length > 0)
                 {
-                    newTitle.Replace(filter, "");
+
+                    foreach (FileInfo track in arryTracks)
+                    {
+                        TagLib.File f = TagLib.File.Create(track.FullName);
+                        string title = StringCleanUp(f.Tag.Title);
+                        string artist = StringCleanUp(f.Tag.JoinedPerformers);
+                        TimeSpan trackTime = f.Properties.Duration;
+
+                        if (String.IsNullOrEmpty(title))
+                        {
+                            Exception ex = new Exception("No Mp3 tag information found. Please add manually.");
+                            throw ex;
+                        }
+
+                        arryTrackTitles.Add(title);
+                        arryTrackArtists.Add(artist);
+                        arryTrackLength.Add(trackTime);
+                        Tracks.Add(new Track(FormatTitle(title), artist, trackTime, track.FullName, false));
+                    }
+                }
+                else
+                {
+                    Exception ex = new Exception("No Mp3 files found.");
+                    throw ex;
                 }
 
-                return newTitle.ToString().ToLower();
+                FormatSearchText();
+                arryTrackTitles = FormatTitle();
             }
             catch (Exception ex)
             {
@@ -67,28 +98,63 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
-        private ArrayList FormatTitle()
+        /// <summary>
+        /// Experimental search function.
+        /// </summary>
+        /// <param name="searchText"></param>
+        /// <param name="searchFields"></param>
+        /// <returns></returns>
+        private IITTrackCollection Search(string searchText, ITPlaylistSearchField searchFields)
         {
-            try
+            iTunesAppClass iTunesLib = new iTunesAppClass();
+            IITTrackCollection results = iTunesLib.LibraryPlaylist.Search(searchText, searchFields);
+
+            if (results != null)
+                return results;
+
+            return null;
+        }
+        
+        public void CheckLibraryForDuplicates(string searchText)
+        {
+            State.StateID state = new State.StateID();
+            IITTrackCollection resultTracks = null;
+            string newTrackTitle = null;
+
+            foreach (string title in arryTrackTitles)
             {
-                ArrayList newArryTrackTitles = new ArrayList();
+                state = State.StateID.ReadyToCheckTitles;
 
-                foreach (string title in arryTrackTitles)
+                if (state == State.StateID.ReadyToCheckTitles)
                 {
-                    StringBuilder newTitle = new StringBuilder(title);
-
-                    foreach (string filter in collectionTitleFilters)
-                    {
-                        newTitle.Replace(filter, "");
-                    }
-                    newArryTrackTitles.Add(newTitle.ToString().ToLower());
+                    newTrackTitle = FormatTrackTitle(title);
+                    state = State.StateID.ReadyToSearchTitles;
                 }
 
-                return newArryTrackTitles;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                if (state == State.StateID.ReadyToSearchTitles)
+                {
+                    resultTracks = Search(newTrackTitle, ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
+                    if (resultTracks != null)
+                        state = State.StateID.ReadyToCheckTime;
+                }
+
+                if (state == State.StateID.ReadyToCheckTime)
+                {
+                    foreach (IITTrack resultTrack in resultTracks)
+                    {
+                        TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(title)];
+                        TimeSpan libraryTrackLengh = FormatTrackTime(resultTrack.Time);
+
+                        TimeSpan difference = trackLength.Subtract(libraryTrackLengh);
+
+                        if (difference.TotalSeconds <= 2)
+                        {
+                            Track track = (Track)Tracks[arryTrackTitles.IndexOf(title)];
+                            track.Duplicate = true;
+                            break;
+                        }
+                    }
+                }
             }
         }
 
@@ -146,165 +212,6 @@ namespace iTunes.Duplicate.Gui
             return false;
         }
 
-        /// <summary>
-        /// Experimental search function.
-        /// </summary>
-        /// <param name="searchText"></param>
-        /// <param name="searchFields"></param>
-        /// <returns></returns>
-        private IITTrackCollection Search(string searchText, ITPlaylistSearchField searchFields)
-        {
-            iTunesAppClass iTunesLib = new iTunesAppClass();
-            IITTrackCollection results = iTunesLib.LibraryPlaylist.Search(searchText, searchFields);
-
-            if (results != null)
-            {
-                return results;
-                //foreach (IITTrack track in results)
-                //{
-                //    if (track != null)
-                //    {
-                //        return true;
-                //    }
-                //}
-            }
-            return null;
-        }
-
-        public void CheckLibraryForDuplicates(string searchText)
-        {
-            State.StateID state = new State.StateID();
-            IITTrackCollection resultTracks = null;
-            StringBuilder newTrackTitle;
-            string newTitle = null;
-
-            foreach (string title in arryTrackTitles)
-            {
-                if (title.Contains('(') && title.Contains(')'))
-                {
-                    int start = title.IndexOf("("); //16
-                    int end = title.IndexOf(")"); //36
-                    newTrackTitle = new StringBuilder(title.Substring(0, start).Trim());
-                }
-                else
-                    newTrackTitle = new StringBuilder(title.Trim());
-
-                newTrackTitle.Append(" ");
-                newTrackTitle.Append(FormatArtists(arryTrackArtists[arryTrackTitles.IndexOf(title)].ToString()));
-
-                state = State.StateID.ReadyToCheckTitles;
-
-                if (state == State.StateID.ReadyToCheckTitles)
-                {
-                    resultTracks = Search(newTrackTitle.ToString(), ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
-                    if (resultTracks != null)
-                        state = State.StateID.ReadyToCheckTime;
-                }
-
-                if (state == State.StateID.ReadyToCheckTime)
-                {
-                    foreach (IITTrack resultTrack in resultTracks)
-                    {
-                        TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(title)];
-                        TimeSpan libraryTrackLengh = FormatTrackTime(resultTrack.Time);
-
-                        TimeSpan difference = trackLength.Subtract(libraryTrackLengh);
-
-                        if (difference.TotalSeconds <= 2)
-                        {
-                            Track track = (Track)Tracks[arryTrackTitles.IndexOf(title)];
-                            track.Duplicate = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        private TimeSpan FormatTrackTime(string trackTime)
-        {
-            TimeSpan trackLength = TimeSpan.Parse(trackTime);
-
-            if (trackLength.TotalHours >= 1)
-                return TimeSpan.Parse("00:" + trackTime);
-            else
-                return trackLength;
-        }
-
-        public void CheckLibraryForDuplicates()
-        {
-            try
-            {
-                iTunesAppClass iTunesLib = new iTunesAppClass();
-                IITTrackCollection tracks = iTunesLib.LibraryPlaylist.Tracks;
-                Dictionary<string, IITTrack> trackCollection = new Dictionary<string, IITTrack>();
-                int trackCount = tracks.Count;
-
-                for (int i = trackCount; i > 0; i--)
-                {
-                    if (tracks[i].Kind == ITTrackKind.ITTrackKindFile)
-                    {
-                        string trackName = FormatTitle(tracks[i].Name);
-                        string trackArtist = FormatArtists(tracks[i].Artist);
-                        TimeSpan trackTime = FormatTime(tracks[i].Time);
-                        CheckDuplicate(trackName.Trim(), trackArtist.Trim(), trackTime);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        private void CheckDuplicate(string trackName, string trackArtist, TimeSpan libraryTrackLength)
-        {
-            try
-            {
-                State.StateID state = new State.StateID();
-                state = State.StateID.ReadyToCheckTitles;
-
-                //1. Check if Titles are the Same
-                if (state == State.StateID.ReadyToCheckTitles)
-                {
-                    if (arryTrackTitles.Contains(trackName))
-                        state = State.StateID.ReadyToCheckArtists;
-                }
-
-                //2. Check first two chars of artist are the same.
-                if (state == State.StateID.ReadyToCheckArtists)
-                {
-                    string formattedArtist = FormatArtists(arryTrackArtists[arryTrackTitles.IndexOf(trackName)].ToString());
-                    if (formattedArtist == trackArtist)
-                        state = State.StateID.ReadyToCheckTime;
-                }
-
-                //3. Check if Times are same +- 2 seconds
-                if (state == State.StateID.ReadyToCheckTime)
-                {
-                    TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(trackName)];
-                    TimeSpan difference = trackLength.Subtract(libraryTrackLength);
-
-                    if (difference.TotalSeconds <= 2)
-                    {
-                        foreach (Track track in Tracks)
-                        {
-                            if (track.Title == trackName)
-                                track.Duplicate = true;
-                        }
-
-                        state = State.StateID.Finished;
-                    }
-                    else
-                        state = State.StateID.Finished;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public void MoveToDestination(string destinationDirectory)
         {
             try
@@ -350,8 +257,6 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
-
-
         public void DeleteDuplicates()
         {
             foreach (Track track in Tracks)
@@ -376,52 +281,6 @@ namespace iTunes.Duplicate.Gui
 
 
 
-        private void CheckSourceDirectory(string sourceDirectory)
-        {
-            try
-            {
-                arryTrackTitles = new ArrayList();
-                arryTrackArtists = new ArrayList();
-                arryTrackLength = new ArrayList();
-                DirectoryInfo sourceDir = new DirectoryInfo(sourceDirectory);
-                arryTracks = sourceDir.GetFiles("*.mp3");
-
-                if (arryTracks.Length > 0)
-                {
-
-                    foreach (FileInfo track in arryTracks)
-                    {
-                        TagLib.File f = TagLib.File.Create(track.FullName);
-                        string title = StringCleanUp(f.Tag.Title);
-                        string artist = StringCleanUp(f.Tag.JoinedPerformers);
-                        TimeSpan trackTime = f.Properties.Duration;
-
-                        if (String.IsNullOrEmpty(title))
-                        {
-                            Exception ex = new Exception("No Mp3 tag information found. Please add manually.");
-                            throw ex;
-                        }
-
-                        arryTrackTitles.Add(title);
-                        arryTrackArtists.Add(artist);
-                        arryTrackLength.Add(trackTime);
-                        Tracks.Add(new Track(FormatTitle(title), artist, trackTime, track.FullName, false));
-                    }
-                }
-                else
-                {
-                    Exception ex = new Exception("No Mp3 files found.");
-                    throw ex;
-                }
-
-                arryTrackTitles = FormatTitle();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         private string StringCleanUp(string title)
         {
             if (title != null)
@@ -438,6 +297,133 @@ namespace iTunes.Duplicate.Gui
             return null;
         }
 
+        private string FormatSearchText()
+        {
+            foreach (string trackTitle in arryTrackTitles)
+            {
+                string noBracketTitle = FormatTrackTitle(trackTitle);
+
+                string[] arryTitle = noBracketTitle.Split(' ');
+                StringBuilder newTitle = new StringBuilder();
+
+                if (!noBracketTitle.Contains('\''))
+                {
+                    newTitle.Append(noBracketTitle);
+                    newTitle.Append(" ");
+                }
+                else
+                {
+                    foreach (string title in arryTitle)
+                    {
+                        int index = 0;
+                        foreach (char s in title)
+                        {
+                            if (s == '\'')
+                            {
+                                newTitle.Append(title.Substring(0, index));
+                                newTitle.Append(" ");
+                            }
+                            index++;
+                        }
+                    }
+                }
+
+                newTitle.Append(FormatArtist(arryTrackArtists[arryTrackTitles.IndexOf(trackTitle)].ToString()));
+            }
+            return null;
+        }
+
+        private string FormatTrackTitle(string title)
+        {
+            StringBuilder newTrackTitle;
+
+            if (title.Contains('(') && title.Contains(')'))
+            {
+                int start = title.IndexOf("(");
+                int end = title.IndexOf(")");
+                newTrackTitle = new StringBuilder(title.Substring(0, start).Trim());
+            }
+            else
+                newTrackTitle = new StringBuilder(title.Trim());
+
+            //newTrackTitle.Append(" ");
+            //newTrackTitle.Append(FormatArtist(arryTrackArtists[arryTrackTitles.IndexOf(title)].ToString()));
+
+            return newTrackTitle.ToString();
+        }
+
+        private string FormatTitle(string trackTitle)
+        {
+            try
+            {
+                StringBuilder newTitle = new StringBuilder(trackTitle);
+
+                foreach (string filter in collectionTitleFilters)
+                {
+                    newTitle.Replace(filter, "");
+                }
+
+                return newTitle.ToString().ToLower();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private ArrayList FormatTitle()
+        {
+            try
+            {
+                ArrayList newArryTrackTitles = new ArrayList();
+
+                foreach (string title in arryTrackTitles)
+                {
+                    StringBuilder newTitle = new StringBuilder(title);
+
+                    foreach (string filter in collectionTitleFilters)
+                    {
+                        newTitle.Replace(filter, "");
+                    }
+                    newArryTrackTitles.Add(newTitle.ToString().ToLower());
+                }
+
+                return newArryTrackTitles;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private string FormatArtist(string artist)
+        {
+            try
+            {
+                if (artist.Length > 2)
+                {
+                    string[] artistSplit = artist.Split(' ');
+                    return artistSplit[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return artist;
+        }
+
+        private TimeSpan FormatTrackTime(string trackTime)
+        {
+            TimeSpan trackLength = TimeSpan.Parse(trackTime);
+
+            if (trackLength.TotalHours >= 1)
+                return TimeSpan.Parse("00:" + trackTime);
+            else
+                return trackLength;
+        }
+
+        [Obsolete("Use FormatArtist function instead.",true)]
         private string FormatArtists(string artist)
         {
             try
@@ -453,6 +439,7 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
+        [Obsolete("User other FormatTime function")]
         private TimeSpan FormatTime(string trackLength)
         {
             try
@@ -480,6 +467,82 @@ namespace iTunes.Duplicate.Gui
                 throw ex;
             }
         }
+
+        [Obsolete("Use iTunes.CheckLibraryForDuplicates with search parameter instead")]
+        public void CheckLibraryForDuplicates()
+        {
+            try
+            {
+                iTunesAppClass iTunesLib = new iTunesAppClass();
+                IITTrackCollection tracks = iTunesLib.LibraryPlaylist.Tracks;
+                Dictionary<string, IITTrack> trackCollection = new Dictionary<string, IITTrack>();
+                int trackCount = tracks.Count;
+
+                for (int i = trackCount; i > 0; i--)
+                {
+                    if (tracks[i].Kind == ITTrackKind.ITTrackKindFile)
+                    {
+                        string trackName = FormatTitle(tracks[i].Name);
+                        string trackArtist = FormatArtist(tracks[i].Artist);
+                        TimeSpan trackTime = FormatTime(tracks[i].Time);
+                        CheckDuplicate(trackName.Trim(), trackArtist.Trim(), trackTime);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Obsolete("Use Search function instead")]
+        private void CheckDuplicate(string trackName, string trackArtist, TimeSpan libraryTrackLength)
+        {
+            try
+            {
+                State.StateID state = new State.StateID();
+                state = State.StateID.ReadyToCheckTitles;
+
+                //1. Check if Titles are the Same
+                if (state == State.StateID.ReadyToCheckTitles)
+                {
+                    if (arryTrackTitles.Contains(trackName))
+                        state = State.StateID.ReadyToCheckArtists;
+                }
+
+                //2. Check first two chars of artist are the same.
+                if (state == State.StateID.ReadyToCheckArtists)
+                {
+                    string formattedArtist = FormatArtist(arryTrackArtists[arryTrackTitles.IndexOf(trackName)].ToString());
+                    if (formattedArtist == trackArtist)
+                        state = State.StateID.ReadyToCheckTime;
+                }
+
+                //3. Check if Times are same +- 2 seconds
+                if (state == State.StateID.ReadyToCheckTime)
+                {
+                    TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(trackName)];
+                    TimeSpan difference = trackLength.Subtract(libraryTrackLength);
+
+                    if (difference.TotalSeconds <= 2)
+                    {
+                        foreach (Track track in Tracks)
+                        {
+                            if (track.Title == trackName)
+                                track.Duplicate = true;
+                        }
+
+                        state = State.StateID.Finished;
+                    }
+                    else
+                        state = State.StateID.Finished;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
     class State
@@ -489,6 +552,7 @@ namespace iTunes.Duplicate.Gui
             TimesEqual,
             ReadyToRemove,
             ReadyToCheckTitles,
+            ReadyToSearchTitles,
             ReadyToParseTracks,
             ReadyToCheckArtists,
             ReadyToCheckTime,
