@@ -49,11 +49,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtSourceDirectory = new System.Windows.Forms.TextBox();
-            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripTotalTracks = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripDuplicates = new System.Windows.Forms.ToolStripStatusLabel();
             this.destinationFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -283,37 +278,6 @@
             this.txtSourceDirectory.Size = new System.Drawing.Size(764, 20);
             this.txtSourceDirectory.TabIndex = 2;
             // 
-            // toolStripProgressBar
-            // 
-            this.toolStripProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripProgressBar.Margin = new System.Windows.Forms.Padding(10, 3, 1, 3);
-            this.toolStripProgressBar.Name = "toolStripProgressBar";
-            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(74, 17);
-            this.toolStripStatusLabel1.Text = "Total Tracks:";
-            // 
-            // toolStripTotalTracks
-            // 
-            this.toolStripTotalTracks.Name = "toolStripTotalTracks";
-            this.toolStripTotalTracks.Size = new System.Drawing.Size(13, 17);
-            this.toolStripTotalTracks.Text = "0";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(65, 17);
-            this.toolStripStatusLabel3.Text = "Duplicates:";
-            // 
-            // toolStripDuplicates
-            // 
-            this.toolStripDuplicates.Name = "toolStripDuplicates";
-            this.toolStripDuplicates.Size = new System.Drawing.Size(13, 17);
-            this.toolStripDuplicates.Text = "0";
-            // 
             // toolStripProgressBar1
             // 
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
@@ -383,11 +347,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dgTracks;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripTotalTracks;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripDuplicates;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnAddToLibrary;
         private System.Windows.Forms.Button btnCheckDuplicates;
