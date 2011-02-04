@@ -23,6 +23,10 @@ namespace iTunes.Duplicate.Gui
         public iTunesForm()
         {
             InitializeComponent();
+
+            string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            this.Text = "iTunes Duplicate Checker (" + version + ")";
+
             txtSourceDirectory.Text = Properties.Settings.Default.SourceDirectory;
             txtDestinationDir.Text = Properties.Settings.Default.DestinationDirectory;
             collectionTitleFilters = Properties.Settings.Default.TitleFilters;
