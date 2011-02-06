@@ -295,20 +295,20 @@ namespace iTunes.Duplicate.Gui
                     {
                         newTitle.Append(title);
                         newTitle.Append(" ");
-                        break;
+                        continue;
                     }
 
-                    int index = 0;
                     foreach (char s in title)
                     {
-                        if (s == '\'')
+                        if (s != '\'')
                         {
-                            newTitle.Append(title.Substring(0, index));
-                            newTitle.Append(" ");
-                            break;
+                            newTitle.Append(s);
+                            continue;
                         }
-                        index++;
+                        else
+                            continue;
                     }
+                    newTitle.Append(" ");
                 }
             }
 
