@@ -21,6 +21,7 @@ namespace iTunes.Duplicate.Gui
         private DirectoryInfo destinationDir;
         private DirectoryInfo sourceDir;
         private System.Collections.Specialized.StringCollection collectionTitleFilters;
+        private System.Collections.Specialized.StringCollection collectionArtistFilters;
 
         public iTunes()
         {
@@ -33,6 +34,7 @@ namespace iTunes.Duplicate.Gui
             sourceDir = new DirectoryInfo(sourceDirectory);
             
             this.collectionTitleFilters = collectionTitleFilters;
+            this.collectionArtistFilters = Properties.Settings.Default.RemoveFromArtist;
 
             if (!sourceDir.Exists)
             {
@@ -141,7 +143,7 @@ namespace iTunes.Duplicate.Gui
 
                         TimeSpan difference = trackLength.Subtract(libraryTrackLengh);
 
-                        if (difference.TotalSeconds <= 2)
+                        if (difference.TotalSeconds <= Properties.Settings.Default.TimeDifferenceInSec)
                         {
                             Track track = (Track)Tracks[arrySearch.IndexOf(title)];
                             track.Duplicate = true;
@@ -311,6 +313,7 @@ namespace iTunes.Duplicate.Gui
             }
 
             newTitle.Append(FormatArtist(artist));
+            newTitle.Replace("-", " ");
             return newTitle.ToString();
         }
 
@@ -374,7 +377,47 @@ namespace iTunes.Duplicate.Gui
             }
         }
 
-        private string FormatArtist(string artist)
+        private string FormatArtist(string artists)
+        {
+            try
+            {
+                //Loop through filter and remove if equal.
+                ArrayList arryStrArtist = new ArrayList();
+                string[] arryArtist = artists.Split(' ');
+                foreach(string artist in arryArtist)
+                {
+                    if (!collectionArtistFilters.Contains(artist))
+                    {
+                        if (!arryStrArtist.Contains(artist))
+                            arryStrArtist.Add(artist);
+                    }
+                }
+
+
+
+                if (arryStrArtist.Count >= 2)
+                {
+                    StringBuilder sbArtist = new StringBuilder();
+                    sbArtist.Append(arryStrArtist[0].ToString().Replace('\'', ' '));
+                    sbArtist.Append(" ");
+                    sbArtist.Append(arryStrArtist[1].ToString().Replace('\'', ' '));
+                    return sbArtist.ToString();
+                }
+                else if (arryStrArtist.Count == 1)
+                {
+                    StringBuilder sbArtist = new StringBuilder();
+                    sbArtist.Append(arryStrArtist[0].ToString().Replace('\'', ' '));
+                    return sbArtist.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return artists;
+        }
+
+        private string FormatArtist(string artist, string nothing)
         {
             try
             {
@@ -519,13 +562,13 @@ namespace iTunes.Duplicate.Gui
                         state = State.StateID.ReadyToCheckTime;
                 }
 
-                //3. Check if Times are same +- 2 seconds
+                //3. Check if Times are same +- 5 seconds
                 if (state == State.StateID.ReadyToCheckTime)
                 {
                     TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(trackName)];
                     TimeSpan difference = trackLength.Subtract(libraryTrackLength);
 
-                    if (difference.TotalSeconds <= 2)
+                    if (difference.TotalSeconds <= Properties.Settings.Default.TimeDifferenceInSec)
                     {
                         foreach (Track track in Tracks)
                         {

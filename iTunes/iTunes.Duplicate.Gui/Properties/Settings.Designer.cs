@@ -69,5 +69,43 @@ namespace iTunes.Duplicate.Gui.Properties {
                 this["TitleFilters"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int TimeDifferenceInSec {
+            get {
+                return ((int)(this["TimeDifferenceInSec"]));
+            }
+            set {
+                this["TimeDifferenceInSec"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>ft</string>
+  <string>Ft</string>
+  <string>FT</string>
+  <string>ft.</string>
+  <string>Ft.</string>
+  <string>FT.</string>
+  <string>feat.</string>
+  <string>Feat.</string>
+  <string>feat</string>
+  <string>Feat</string>
+  <string>featuring</string>
+  <string>Featuring</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection RemoveFromArtist {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["RemoveFromArtist"]));
+            }
+            set {
+                this["RemoveFromArtist"] = value;
+            }
+        }
     }
 }

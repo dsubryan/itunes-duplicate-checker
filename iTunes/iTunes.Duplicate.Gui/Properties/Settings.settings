@@ -22,5 +22,25 @@
   &lt;string&gt;(Original Mix Edit)&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="TimeDifferenceInSec" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="RemoveFromArtist" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;ft&lt;/string&gt;
+  &lt;string&gt;Ft&lt;/string&gt;
+  &lt;string&gt;FT&lt;/string&gt;
+  &lt;string&gt;ft.&lt;/string&gt;
+  &lt;string&gt;Ft.&lt;/string&gt;
+  &lt;string&gt;FT.&lt;/string&gt;
+  &lt;string&gt;feat.&lt;/string&gt;
+  &lt;string&gt;Feat.&lt;/string&gt;
+  &lt;string&gt;feat&lt;/string&gt;
+  &lt;string&gt;Feat&lt;/string&gt;
+  &lt;string&gt;featuring&lt;/string&gt;
+  &lt;string&gt;Featuring&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
