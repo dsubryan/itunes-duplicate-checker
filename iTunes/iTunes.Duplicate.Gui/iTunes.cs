@@ -393,8 +393,6 @@ namespace iTunes.Duplicate.Gui
                     }
                 }
 
-
-
                 if (arryStrArtist.Count >= 2)
                 {
                     StringBuilder sbArtist = new StringBuilder();
@@ -415,30 +413,6 @@ namespace iTunes.Duplicate.Gui
                 throw ex;
             }
             return artists;
-        }
-
-        private string FormatArtist(string artist, string nothing)
-        {
-            try
-            {
-                if (artist.Length > 2)
-                {
-                    string[] artistSplit = artist.Split(' ');
-
-                    if (artistSplit[0].Contains('\''))
-                    {
-                        int index = artistSplit[0].IndexOf('\'');
-                        return artistSplit[0].Substring(0, index);
-                    }
-
-                    return artistSplit[0];
-                }
-            }
-            catch (Exception ex)
-            {
-                return artist;
-            }
-            return artist;
         }
 
         private TimeSpan FormatTrackTime(string trackTime)
@@ -465,6 +439,31 @@ namespace iTunes.Duplicate.Gui
                 return titleChar.ToString();
             }
             return null;
+        }
+
+        [Obsolete("Use FormatArtist Function instead")]
+        private string FormatArtistString(string artist)
+        {
+            try
+            {
+                if (artist.Length > 2)
+                {
+                    string[] artistSplit = artist.Split(' ');
+
+                    if (artistSplit[0].Contains('\''))
+                    {
+                        int index = artistSplit[0].IndexOf('\'');
+                        return artistSplit[0].Substring(0, index);
+                    }
+
+                    return artistSplit[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                return artist;
+            }
+            return artist;
         }
 
         [Obsolete("Use FormatArtist function instead.",true)]
