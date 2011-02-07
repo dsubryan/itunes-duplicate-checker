@@ -344,7 +344,7 @@ namespace iTunes.Duplicate.Gui
                     newTitle.Replace(filter, "");
                 }
 
-                return newTitle.ToString().ToLower();
+                return newTitle.ToString();
             }
             catch (Exception ex)
             {
@@ -396,15 +396,15 @@ namespace iTunes.Duplicate.Gui
                 if (arryStrArtist.Count >= 2)
                 {
                     StringBuilder sbArtist = new StringBuilder();
-                    sbArtist.Append(arryStrArtist[0].ToString().Replace('\'', ' '));
+                    sbArtist.Append(FormatTitle(arryStrArtist[0].ToString()));
                     sbArtist.Append(" ");
-                    sbArtist.Append(arryStrArtist[1].ToString().Replace('\'', ' '));
+                    sbArtist.Append(FormatTitle(arryStrArtist[1].ToString()));
                     return sbArtist.ToString();
                 }
                 else if (arryStrArtist.Count == 1)
                 {
                     StringBuilder sbArtist = new StringBuilder();
-                    sbArtist.Append(arryStrArtist[0].ToString().Replace('\'', ' '));
+                    sbArtist.Append(FormatTitle(arryStrArtist[0].ToString()));
                     return sbArtist.ToString();
                 }
             }
@@ -412,7 +412,7 @@ namespace iTunes.Duplicate.Gui
             {
                 throw ex;
             }
-            return artists;
+            return FormatTitle(artists);
         }
 
         private TimeSpan FormatTrackTime(string trackTime)

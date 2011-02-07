@@ -54,6 +54,8 @@ namespace iTunes.Duplicate.Gui.Properties {
   <string>'</string>
   <string>’</string>
   <string>`</string>
+  <string>.</string>
+  <string>,</string>
   <string>(Radio)</string>
   <string>(Main)</string>
   <string>(PO Clean Edit)</string>
