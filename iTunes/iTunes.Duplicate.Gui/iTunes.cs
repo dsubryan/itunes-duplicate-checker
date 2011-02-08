@@ -102,7 +102,7 @@ namespace iTunes.Duplicate.Gui
         }
 
         /// <summary>
-        /// Experimental search function.
+        /// Search function.
         /// </summary>
         /// <param name="searchText"></param>
         /// <param name="searchFields"></param>
@@ -118,7 +118,7 @@ namespace iTunes.Duplicate.Gui
             return null;
         }
         
-        public void CheckLibraryForDuplicates(string searchText)
+        public void CheckLibraryForDuplicates()
         {
             State.StateID state = new State.StateID();
             IITTrackCollection resultTracks = null;
@@ -306,7 +306,10 @@ namespace iTunes.Duplicate.Gui
                             continue;
                         }
                         else
+                        {
+                            newTitle.Append(" ");
                             continue;
+                        }
                     }
                     newTitle.Append(" ");
                 }
@@ -512,7 +515,7 @@ namespace iTunes.Duplicate.Gui
         }
 
         [Obsolete("Use iTunes.CheckLibraryForDuplicates with search parameter instead")]
-        public void CheckLibraryForDuplicates()
+        public void CheckLibraryForDuplicates(string searchString)
         {
             try
             {

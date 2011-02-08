@@ -173,7 +173,7 @@ namespace iTunes.Duplicate.Gui
         {
             try
             {
-                iTunesApp.CheckLibraryForDuplicates("test");
+                iTunesApp.CheckLibraryForDuplicates();
             }
             catch (Exception ex)
             {
