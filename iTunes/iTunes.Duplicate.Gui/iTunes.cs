@@ -244,7 +244,13 @@ namespace iTunes.Duplicate.Gui
                         CopyDirectory(Element, Dst + Path.GetFileName(Element));
                     // Files in directory
                     else
-                        System.IO.File.Copy(Element, Dst + Path.GetFileName(Element), true);
+                    {
+                        FileInfo mp3file = new FileInfo(Element);
+                        if (mp3file.Extension == ".mp3" || mp3file.Extension == ".jpg" || mp3file.Extension == ".gif" || mp3file.Extension == ".png")
+                            System.IO.File.Copy(Element, Dst + Path.GetFileName(Element), true);
+                        else
+                            mp3file.Delete();
+                    }
                 }
             }
             catch (Exception ex)
