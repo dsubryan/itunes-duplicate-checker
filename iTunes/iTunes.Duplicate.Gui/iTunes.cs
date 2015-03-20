@@ -51,6 +51,20 @@ namespace iTunes.Duplicate.Gui
             CheckSourceDirectory(sourceDirectory);
         }
 
+        private string DetermineAudioExtension()
+        {
+            if(sourceDir.GetFiles("*.mp4").Count() > 0)
+            {
+                return "*.mp4";
+            }
+            else if (sourceDir.GetFiles("*.m4a").Count() > 0)
+            {
+                return "*.m4a";
+            }
+
+            return "*.mp3";
+        }
+
         private void CheckSourceDirectory(string sourceDirectory)
         {
             try
@@ -61,7 +75,7 @@ namespace iTunes.Duplicate.Gui
                 arrySearch = new ArrayList();
 
                 DirectoryInfo sourceDir = new DirectoryInfo(sourceDirectory);
-                arryTracks = sourceDir.GetFiles("*.mp3");
+                arryTracks = sourceDir.GetFiles(DetermineAudioExtension());
 
                 if (arryTracks.Length > 0)
                 {
@@ -171,7 +185,7 @@ namespace iTunes.Duplicate.Gui
                 throw ex;
             }
 
-            FileInfo[] tracks = newPath.GetFiles("*.mp3");
+            FileInfo[] tracks = newPath.GetFiles(DetermineAudioExtension());
 
             foreach (FileInfo track in tracks)
             {

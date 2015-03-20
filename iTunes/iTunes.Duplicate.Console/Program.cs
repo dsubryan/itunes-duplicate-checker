@@ -14,8 +14,8 @@ namespace iTunes.Duplicate.Console
             try
             {
                 string searchString = "dog days flo";
-                string sourceDirectory = @"C:\Users\subryad\Downloads\VA-Hed_Kandi_Presents_Athmes_and_Artwork-(HEDK001BOX)-4CD-Retail-2011-HFT";
-                string destinationDirectory = @"C:\";
+                string sourceDirectory = @"C:\Users\subryad\Music\HipHop";
+                string destinationDirectory = @"C:\Users\subryad\Music\HipHop";
                 Gui.iTunes iTunesApp = new Gui.iTunes(sourceDirectory, destinationDirectory, Properties.Settings.Default.TitleFilters);
                 iTunesApp.CheckLibraryForDuplicates(searchString);
             }
