@@ -143,7 +143,6 @@ namespace iTunes.Duplicate.Gui
 
                 if (state == State.StateID.ReadyToSearchTitles)
                 {
-                    //resultTracks = Search(title, ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
                     string searchTitle = FormatTitle(title);
                     resultTracks = Search(searchTitle, ITPlaylistSearchField.ITPlaylistSearchFieldSongNames);
                     if (resultTracks != null)
@@ -171,26 +170,6 @@ namespace iTunes.Duplicate.Gui
                             }
                         }
                     }
-                }
-
-                if (state == State.StateID.ReadyToCheckTime)
-                {
-                    //TimeSpan libraryTrackLenghx = FormatTrackTime(testTrack.Time);
-
-                    //foreach (IITTrack resultTrack in resultTracks)
-                    //{
-                    //    TimeSpan trackLength = (TimeSpan)arryTrackLength[arrySearch.IndexOf(title)];
-                    //    TimeSpan libraryTrackLengh = FormatTrackTime(resultTrack.Time);
-
-                    //    TimeSpan difference = trackLength.Subtract(libraryTrackLengh);
-
-                    //    if (difference.TotalSeconds <= Properties.Settings.Default.TimeDifferenceInSec)
-                    //    {
-                    //        Track track = (Track)Tracks[arrySearch.IndexOf(title)];
-                    //        track.Duplicate = true;
-                    //        break;
-                    //    }
-                    //}
                 }
             }
         }
