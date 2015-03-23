@@ -13,8 +13,8 @@ namespace iTunes.Duplicate.Console
         {
             try
             {
-                string sourceDirectory = @"C:\Users\subryad\Music\HipHop";
-                string destinationDirectory = @"C:\Users\subryad\Music\HipHop";
+                string sourceDirectory = @"C:\Music\";
+                string destinationDirectory = @"C:\Music\test";
                 Gui.iTunes iTunesApp = new Gui.iTunes(sourceDirectory, destinationDirectory, Properties.Settings.Default.TitleFilters);
                 iTunesApp.CheckLibraryForDuplicates();
             }

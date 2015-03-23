@@ -137,33 +137,60 @@ namespace iTunes.Duplicate.Gui
             State.StateID state = new State.StateID();
             IITTrackCollection resultTracks = null;
 
-            foreach (string title in arrySearch)
+            foreach (string title in arryTrackTitles)
             {
                 state = State.StateID.ReadyToSearchTitles;
 
                 if (state == State.StateID.ReadyToSearchTitles)
                 {
-                    resultTracks = Search(title, ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
+                    //resultTracks = Search(title, ITPlaylistSearchField.ITPlaylistSearchFieldVisible);
+                    string searchTitle = FormatTitle(title);
+                    resultTracks = Search(searchTitle, ITPlaylistSearchField.ITPlaylistSearchFieldSongNames);
                     if (resultTracks != null)
-                        state = State.StateID.ReadyToCheckTime;
+                    {
+                        foreach (IITTrack resultTrack in resultTracks)
+                        {
+                            string artist = (string)arryTrackArtists[arryTrackTitles.IndexOf(title)].ToString().ToLower();
+                            if (resultTrack.Artist != null)
+                            {
+                                if (resultTrack.Artist.ToLower().Contains(artist) || artist.Contains(resultTrack.Artist.ToLower()))
+                                {
+                                    state = State.StateID.ReadyToCheckTime;
+                                    TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(title)];
+                                    TimeSpan libraryTrackLengh = FormatTrackTime(resultTrack.Time);
+
+                                    TimeSpan difference = trackLength.Subtract(libraryTrackLengh);
+
+                                    if (difference.TotalSeconds <= Properties.Settings.Default.TimeDifferenceInSec)
+                                    {
+                                        Track track = (Track)Tracks[arryTrackTitles.IndexOf(title)];
+                                        track.Duplicate = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
                 if (state == State.StateID.ReadyToCheckTime)
                 {
-                    foreach (IITTrack resultTrack in resultTracks)
-                    {
-                        TimeSpan trackLength = (TimeSpan)arryTrackLength[arrySearch.IndexOf(title)];
-                        TimeSpan libraryTrackLengh = FormatTrackTime(resultTrack.Time);
+                    //TimeSpan libraryTrackLenghx = FormatTrackTime(testTrack.Time);
 
-                        TimeSpan difference = trackLength.Subtract(libraryTrackLengh);
+                    //foreach (IITTrack resultTrack in resultTracks)
+                    //{
+                    //    TimeSpan trackLength = (TimeSpan)arryTrackLength[arrySearch.IndexOf(title)];
+                    //    TimeSpan libraryTrackLengh = FormatTrackTime(resultTrack.Time);
 
-                        if (difference.TotalSeconds <= Properties.Settings.Default.TimeDifferenceInSec)
-                        {
-                            Track track = (Track)Tracks[arrySearch.IndexOf(title)];
-                            track.Duplicate = true;
-                            break;
-                        }
-                    }
+                    //    TimeSpan difference = trackLength.Subtract(libraryTrackLengh);
+
+                    //    if (difference.TotalSeconds <= Properties.Settings.Default.TimeDifferenceInSec)
+                    //    {
+                    //        Track track = (Track)Tracks[arrySearch.IndexOf(title)];
+                    //        track.Duplicate = true;
+                    //        break;
+                    //    }
+                    //}
                 }
             }
         }
