@@ -13,7 +13,7 @@ namespace iTunes.Duplicate.Gui
     public class iTunes
     {
         private FileInfo[] arryTracks;
-        private ArrayList arrySearch;
+        //private ArrayList arrySearch;
         private ArrayList arryTrackTitles;
         private ArrayList arryTrackArtists;
         private ArrayList arryTrackLength;
@@ -72,7 +72,7 @@ namespace iTunes.Duplicate.Gui
                 arryTrackTitles = new ArrayList();
                 arryTrackArtists = new ArrayList();
                 arryTrackLength = new ArrayList();
-                arrySearch = new ArrayList();
+                //arrySearch = new ArrayList();
 
                 DirectoryInfo sourceDir = new DirectoryInfo(sourceDirectory);
                 arryTracks = sourceDir.GetFiles(DetermineAudioExtension());
@@ -85,7 +85,7 @@ namespace iTunes.Duplicate.Gui
                         TagLib.File f = TagLib.File.Create(track.FullName);
                         string title = StringCleanUp(f.Tag.Title);
                         string artist = StringCleanUp(f.Tag.JoinedPerformers);
-                        string searchText = FormatSearchText(title, artist);
+                        string searchTitleText = FormatTrackTitle(title);
                         TimeSpan trackTime = f.Properties.Duration;
 
                         if (String.IsNullOrEmpty(title))
@@ -97,8 +97,8 @@ namespace iTunes.Duplicate.Gui
                         arryTrackTitles.Add(title);
                         arryTrackArtists.Add(artist);
                         arryTrackLength.Add(trackTime);
-                        arrySearch.Add(searchText);
-                        Tracks.Add(new Track(title, artist, trackTime, track.FullName, false, searchText));
+                        //arrySearch.Add(searchText);
+                        Tracks.Add(new Track(title, artist, trackTime, track.FullName, false, searchTitleText));
                     }
                 }
                 else

@@ -52,7 +52,7 @@ namespace iTunes.Duplicate.Gui
             get { return trackTime.ToString("mm:ss"); }
         }
 
-        public string SearchText
+        public string SearchTitleText
         {
             get { return searchText; }
         }

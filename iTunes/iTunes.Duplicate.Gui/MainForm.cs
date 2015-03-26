@@ -42,6 +42,7 @@ namespace iTunes.Duplicate.Gui
 
             state = FormState.FormStateID.ReadyToProcess;
             ControlState();
+            dgTracks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void DisableButtons()
@@ -108,6 +109,8 @@ namespace iTunes.Duplicate.Gui
 
                 dgTracks.DataSource = null;
                 dgTracks.DataSource = iTunesApp.Tracks;
+                dgTracks.Columns[0].Width = 40;
+                dgTracks.Columns[3].Width = 40;
                 dgTracks.Columns["Path"].Visible = false;
                 dgTracks.Columns["Duplicate"].ReadOnly = false;
             }
@@ -121,6 +124,9 @@ namespace iTunes.Duplicate.Gui
                 btnAddToLibrary.Enabled = false;
 
                 dgTracks.DataSource = iTunesApp.Tracks;
+                dgTracks.Columns[0].Width = 40;
+                dgTracks.Columns[3].Width = 40;
+
                 dgTracks.Columns["Path"].Visible = false;
                 dgTracks.Columns["Duplicate"].ReadOnly = true;
             }
@@ -259,6 +265,8 @@ namespace iTunes.Duplicate.Gui
             {
                 iTunesApp = new iTunes(txtSourceDirectory.Text, txtDestinationDir.Text, collectionTitleFilters);
                 dgTracks.DataSource = iTunesApp.Tracks;
+                dgTracks.Columns[0].Width = 40;
+                dgTracks.Columns[3].Width = 40;
                 dgTracks.Columns["Duplicate"].ReadOnly = true;
             }
             catch (Exception ex)
