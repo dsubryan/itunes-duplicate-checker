@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(iTunesForm));
             this.sourceFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -42,6 +42,11 @@
             this.btnRemoveDuplicates = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripTotalTracks1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripDuplicates1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnBrowseDest = new System.Windows.Forms.Button();
@@ -50,11 +55,6 @@
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtSourceDirectory = new System.Windows.Forms.TextBox();
             this.destinationFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripTotalTracks1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripDuplicates1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTracks)).BeginInit();
@@ -89,8 +89,8 @@
             this.dgTracks.AllowUserToAddRows = false;
             this.dgTracks.AllowUserToDeleteRows = false;
             this.dgTracks.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightCyan;
-            this.dgTracks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dgTracks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgTracks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgTracks.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgTracks.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -103,6 +103,7 @@
             this.dgTracks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTracks.Size = new System.Drawing.Size(973, 561);
             this.dgTracks.TabIndex = 2;
+            //this.dgTracks.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(dgTracks_Click);
             // 
             // panel3
             // 
@@ -132,11 +133,11 @@
             // 
             this.btnAddToLibrary.Image = global::iTunes.Duplicate.Gui.Properties.Resources.iTunes10;
             this.btnAddToLibrary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddToLibrary.Location = new System.Drawing.Point(448, 16);
+            this.btnAddToLibrary.Location = new System.Drawing.Point(576, 16);
             this.btnAddToLibrary.Name = "btnAddToLibrary";
-            this.btnAddToLibrary.Size = new System.Drawing.Size(104, 23);
+            this.btnAddToLibrary.Size = new System.Drawing.Size(117, 23);
             this.btnAddToLibrary.TabIndex = 10;
-            this.btnAddToLibrary.Text = "Add";
+            this.btnAddToLibrary.Text = "5: Add";
             this.btnAddToLibrary.UseVisualStyleBackColor = true;
             this.btnAddToLibrary.Click += new System.EventHandler(this.btnAddToLibrary_Click);
             // 
@@ -144,11 +145,11 @@
             // 
             this.btnCheckDuplicates.Image = global::iTunes.Duplicate.Gui.Properties.Resources.Search;
             this.btnCheckDuplicates.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCheckDuplicates.Location = new System.Drawing.Point(118, 16);
+            this.btnCheckDuplicates.Location = new System.Drawing.Point(150, 16);
             this.btnCheckDuplicates.Name = "btnCheckDuplicates";
-            this.btnCheckDuplicates.Size = new System.Drawing.Size(104, 23);
+            this.btnCheckDuplicates.Size = new System.Drawing.Size(117, 23);
             this.btnCheckDuplicates.TabIndex = 9;
-            this.btnCheckDuplicates.Text = "Check Dupes";
+            this.btnCheckDuplicates.Text = "2: Check Dupes";
             this.btnCheckDuplicates.UseVisualStyleBackColor = true;
             this.btnCheckDuplicates.Click += new System.EventHandler(this.btnCheckDuplicates_Click);
             // 
@@ -156,11 +157,11 @@
             // 
             this.btnCopy.Image = global::iTunes.Duplicate.Gui.Properties.Resources.copy;
             this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCopy.Location = new System.Drawing.Point(338, 16);
+            this.btnCopy.Location = new System.Drawing.Point(434, 16);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(104, 23);
+            this.btnCopy.Size = new System.Drawing.Size(117, 23);
             this.btnCopy.TabIndex = 8;
-            this.btnCopy.Text = "Copy";
+            this.btnCopy.Text = "4: Copy";
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
@@ -168,11 +169,11 @@
             // 
             this.btnRemoveDuplicates.Image = global::iTunes.Duplicate.Gui.Properties.Resources.Remove;
             this.btnRemoveDuplicates.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemoveDuplicates.Location = new System.Drawing.Point(228, 16);
+            this.btnRemoveDuplicates.Location = new System.Drawing.Point(292, 16);
             this.btnRemoveDuplicates.Name = "btnRemoveDuplicates";
-            this.btnRemoveDuplicates.Size = new System.Drawing.Size(104, 23);
+            this.btnRemoveDuplicates.Size = new System.Drawing.Size(117, 23);
             this.btnRemoveDuplicates.TabIndex = 7;
-            this.btnRemoveDuplicates.Text = "Remove Dupes";
+            this.btnRemoveDuplicates.Text = "3: Remove Dupes";
             this.btnRemoveDuplicates.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemoveDuplicates.UseVisualStyleBackColor = true;
             this.btnRemoveDuplicates.Click += new System.EventHandler(this.btnRemoveDuplicates_Click);
@@ -183,9 +184,9 @@
             this.btnLoad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLoad.Location = new System.Drawing.Point(8, 16);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(104, 23);
+            this.btnLoad.Size = new System.Drawing.Size(117, 23);
             this.btnLoad.TabIndex = 6;
-            this.btnLoad.Text = "Load Folder";
+            this.btnLoad.Text = "1: Load Folder";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -202,6 +203,35 @@
             this.statusStrip1.Size = new System.Drawing.Size(973, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(77, 17);
+            this.toolStripStatusLabel2.Text = "Total Tracks: ";
+            // 
+            // toolStripTotalTracks1
+            // 
+            this.toolStripTotalTracks1.Name = "toolStripTotalTracks1";
+            this.toolStripTotalTracks1.Size = new System.Drawing.Size(13, 17);
+            this.toolStripTotalTracks1.Text = "0";
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(68, 17);
+            this.toolStripStatusLabel5.Text = "Duplicates: ";
+            // 
+            // toolStripDuplicates1
+            // 
+            this.toolStripDuplicates1.Name = "toolStripDuplicates1";
+            this.toolStripDuplicates1.Size = new System.Drawing.Size(13, 17);
+            this.toolStripDuplicates1.Text = "0";
             // 
             // groupBox1
             // 
@@ -277,35 +307,6 @@
             this.txtSourceDirectory.Name = "txtSourceDirectory";
             this.txtSourceDirectory.Size = new System.Drawing.Size(764, 20);
             this.txtSourceDirectory.TabIndex = 2;
-            // 
-            // toolStripProgressBar1
-            // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(77, 17);
-            this.toolStripStatusLabel2.Text = "Total Tracks: ";
-            // 
-            // toolStripTotalTracks1
-            // 
-            this.toolStripTotalTracks1.Name = "toolStripTotalTracks1";
-            this.toolStripTotalTracks1.Size = new System.Drawing.Size(13, 17);
-            this.toolStripTotalTracks1.Text = "0";
-            // 
-            // toolStripStatusLabel5
-            // 
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(68, 17);
-            this.toolStripStatusLabel5.Text = "Duplicates: ";
-            // 
-            // toolStripDuplicates1
-            // 
-            this.toolStripDuplicates1.Name = "toolStripDuplicates1";
-            this.toolStripDuplicates1.Size = new System.Drawing.Size(13, 17);
-            this.toolStripDuplicates1.Text = "0";
             // 
             // iTunesForm
             // 

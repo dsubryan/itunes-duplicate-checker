@@ -292,6 +292,7 @@ namespace iTunes.Duplicate.Gui
             {
                 LoadSourceDirectory();
                 state = FormState.FormStateID.CheckDuplicates;
+                DisableButtons();
                 ControlState();
             }
             catch (Exception ex)
@@ -375,6 +376,16 @@ namespace iTunes.Duplicate.Gui
             if (result == System.Windows.Forms.DialogResult.OK)
                 txtSourceDirectory.Text = sourceFolderDialog.SelectedPath;
         }
+
+        //private void dgTracks_Click(object sender, EventArgs e)
+        //{
+
+        //    if(((DataGridView)sender).CurrentCell.ColumnIndex == 0 && )
+        //    {
+        //        string test = null;
+                            
+        //    }
+        //}
     }
 
     class FormState
