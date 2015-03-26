@@ -143,7 +143,7 @@ namespace iTunes.Duplicate.Gui
 
                 if (state == State.StateID.ReadyToSearchTitles)
                 {
-                    string searchTitle = FormatTitle(title);
+                    string searchTitle = FormatTrackTitle(title);
                     resultTracks = Search(searchTitle, ITPlaylistSearchField.ITPlaylistSearchFieldSongNames);
                     if (resultTracks != null)
                     {
