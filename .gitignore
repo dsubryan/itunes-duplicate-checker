@@ -3,3 +3,4 @@ obj/
 iTunes/iTunes.Duplicate.Gui/iTunes.Duplicate.Gui.csproj.user
 *.suo
 iTunes/iTunes.Duplicate.Setup/Debug/*
+iTunes/iTunes.suo
