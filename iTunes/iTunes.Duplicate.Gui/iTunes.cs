@@ -149,11 +149,13 @@ namespace iTunes.Duplicate.Gui
                     {
                         foreach (IITTrack resultTrack in resultTracks)
                         {
-                            string artist = (string)arryTrackArtists[arryTrackTitles.IndexOf(title)].ToString().ToLower();
-                            artist = FormatArtist(artist);
+                            string searchArtist = (string)arryTrackArtists[arryTrackTitles.IndexOf(title)].ToString();
+                            searchArtist = FormatArtist(searchArtist);
                             if (resultTrack.Artist != null)
                             {
-                                if (resultTrack.Artist.ToLower().Contains(artist) || artist.Contains(resultTrack.Artist.ToLower()))
+                                string resultArtist = resultTrack.Artist;
+                                resultArtist = FormatArtist(resultArtist);
+                                if(resultArtist.Contains(searchArtist) || searchArtist.Contains(resultArtist))
                                 {
                                     state = State.StateID.ReadyToCheckTime;
                                     TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(title)];
@@ -431,16 +433,13 @@ namespace iTunes.Duplicate.Gui
                         sbArtist.Append(artist);
                         sbArtist.Append(" ");
                     }
-                    //sbArtist.Append(FormatTitle(arryStrArtist[0].ToString()));
-                    //sbArtist.Append(" ");
-                    //sbArtist.Append(FormatTitle(arryStrArtist[1].ToString()));
                     return sbArtist.ToString().TrimEnd();
                 }
                 else if (arryStrArtist.Count == 1)
                 {
                     StringBuilder sbArtist = new StringBuilder();
                     sbArtist.Append(FormatTitle(arryStrArtist[0].ToString()));
-                    return sbArtist.ToString();
+                    return sbArtist.ToString().ToLower();
                 }
             }
             catch (Exception ex)
