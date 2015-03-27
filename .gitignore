@@ -1,6 +1,7 @@
-bin/
-obj/
-iTunes/iTunes.Duplicate.Gui/iTunes.Duplicate.Gui.csproj.user
+iTunes/iTunes.Duplicate.Setup/[Dd]ebug/*
+iTunes/iTunes.Duplicate.Console/bin/*
+iTunes/iTunes.Duplicate.Console/obj/*
+iTunes/iTunes.Duplicate.Gui/bin/*
+iTunes/iTunes.Duplicate.Gui/obj/*
 *.suo
-iTunes/iTunes.Duplicate.Setup/Debug/*
-iTunes/iTunes.suo
+*.user
