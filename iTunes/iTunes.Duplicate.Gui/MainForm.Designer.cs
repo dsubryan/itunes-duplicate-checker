@@ -103,7 +103,8 @@
             this.dgTracks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTracks.Size = new System.Drawing.Size(973, 561);
             this.dgTracks.TabIndex = 2;
-            //this.dgTracks.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(dgTracks_Click);
+            this.dgTracks.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(dgTracks_Click);
+            this.dgTracks.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(dgTracks_CellEndEdit);
             // 
             // panel3
             // 

@@ -377,15 +377,30 @@ namespace iTunes.Duplicate.Gui
                 txtSourceDirectory.Text = sourceFolderDialog.SelectedPath;
         }
 
-        //private void dgTracks_Click(object sender, EventArgs e)
-        //{
+        private void dgTracks_Click(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            if(e.ColumnIndex == 0 && dg.CurrentCell.ReadOnly == false)
+            {
+                dgTracks.EndEdit();
+            }
+        }
 
-        //    if(((DataGridView)sender).CurrentCell.ColumnIndex == 0 && )
-        //    {
-        //        string test = null;
-                            
-        //    }
-        //}
+        private void dgTracks_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            if(dg.CurrentCell.ColumnIndex == 0 && dg.CurrentCell.ReadOnly == false)
+            {
+                int index = 0;
+                foreach (DataGridViewRow row in dgTracks.Rows)
+                {
+                    if (Convert.ToBoolean(row.Cells[0].Value))
+                        index++;
+                }
+
+                toolStripDuplicates1.Text = index.ToString();
+            }
+        }
     }
 
     class FormState
