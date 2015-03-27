@@ -150,6 +150,7 @@ namespace iTunes.Duplicate.Gui
                         foreach (IITTrack resultTrack in resultTracks)
                         {
                             string artist = (string)arryTrackArtists[arryTrackTitles.IndexOf(title)].ToString().ToLower();
+                            artist = FormatArtist(artist);
                             if (resultTrack.Artist != null)
                             {
                                 if (resultTrack.Artist.ToLower().Contains(artist) || artist.Contains(resultTrack.Artist.ToLower()))
@@ -422,13 +423,18 @@ namespace iTunes.Duplicate.Gui
                     }
                 }
 
-                if (arryStrArtist.Count >= 2)
+                if (arryStrArtist.Count > 1)
                 {
                     StringBuilder sbArtist = new StringBuilder();
-                    sbArtist.Append(FormatTitle(arryStrArtist[0].ToString()));
-                    sbArtist.Append(" ");
-                    sbArtist.Append(FormatTitle(arryStrArtist[1].ToString()));
-                    return sbArtist.ToString();
+                    foreach (string artist in arryStrArtist)
+                    {
+                        sbArtist.Append(artist);
+                        sbArtist.Append(" ");
+                    }
+                    //sbArtist.Append(FormatTitle(arryStrArtist[0].ToString()));
+                    //sbArtist.Append(" ");
+                    //sbArtist.Append(FormatTitle(arryStrArtist[1].ToString()));
+                    return sbArtist.ToString().TrimEnd();
                 }
                 else if (arryStrArtist.Count == 1)
                 {
