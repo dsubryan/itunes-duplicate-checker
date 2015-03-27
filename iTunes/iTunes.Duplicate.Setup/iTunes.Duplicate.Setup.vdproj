@@ -27,14 +27,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5A3E001034821E5988A806C89CA56B10"
+        "OwnerKey" = "8:_6524BDA6894048BA9D27C3F02E0897F5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6524BDA6894048BA9D27C3F02E0897F5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_796B56705CFAE939BD836FF6AD68B4D7"
-        "OwnerKey" = "8:_6524BDA6894048BA9D27C3F02E0897F5"
+        "MsmKey" = "8:_6DB11BC8B31BB254C57A2463DB49D902"
+        "OwnerKey" = "8:_5641C11A1CE94A5090C87982226FE77C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -79,6 +85,12 @@
         "OwnerKey" = "8:_5641C11A1CE94A5090C87982226FE77C"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5A3E001034821E5988A806C89CA56B10"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -104,6 +116,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -128,6 +153,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -182,7 +220,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Interop.iTunesLib, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Interop.iTunesLib, Version=1.13.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_5641C11A1CE94A5090C87982226FE77C"
@@ -207,6 +245,57 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5A3E001034821E5988A806C89CA56B10"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5A3E001034821E5988A806C89CA56B10"
+                    {
+                    "Name" = "8:taglib-sharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:taglib-sharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6DB11BC8B31BB254C57A2463DB49D902"
+            {
+            "SourcePath" = "8:iTunes.exe"
+            "TargetName" = "8:iTunes.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C16188A0048A45568454A7A134AAAB55"
@@ -339,7 +428,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_F29B5AA3F399457AB86D3CFADD1E0D69"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -366,7 +455,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:iTunes Duplicate Checker"
         "ProductCode" = "8:{747ED9E7-E2C1-49CA-A9C2-B3805DE367DE}"
-        "PackageCode" = "8:{80A683BB-ED9B-42E7-9401-266929DE45D5}"
+        "PackageCode" = "8:{2CADCFCF-CEB1-4455-8CF5-12FF8267C421}"
         "UpgradeCode" = "8:{500AD503-37AC-48A6-88E9-4360780E8A18}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -495,7 +584,7 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_6524BDA6894048BA9D27C3F02E0897F5"
-            "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
+            "Folder" = "8:_41D9DBB58F6C49E2938EC2E1F68C9097"
             "WorkingFolder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
             "Icon" = "8:_C16188A0048A45568454A7A134AAAB55"
             "Feature" = "8:"
@@ -901,7 +990,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6524BDA6894048BA9D27C3F02E0897F5"
             {
-            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\obj\\x86\\Release\\iTunes Duplicate Checker.exe"
+            "SourcePath" = "8:..\\iTunes.Duplicate.Gui\\obj\\x86\\Debug\\iTunes Duplicate Checker.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F29B5AA3F399457AB86D3CFADD1E0D69"
