@@ -144,6 +144,7 @@ namespace iTunes.Duplicate.Gui
                 if (state == State.StateID.ReadyToSearchTitles)
                 {
                     string searchTitle = FormatTrackTitle(title);
+                    searchTitle = FormatArtist(searchTitle);
                     resultTracks = Search(searchTitle, ITPlaylistSearchField.ITPlaylistSearchFieldSongNames);
                     if (resultTracks != null)
                     {
