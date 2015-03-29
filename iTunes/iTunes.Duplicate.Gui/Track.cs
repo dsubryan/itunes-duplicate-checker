@@ -14,6 +14,7 @@ namespace iTunes.Duplicate.Gui
         private bool duplicate;
         private string path;
         private string searchText;
+        private string result;
 
         public Track()
         {
@@ -29,6 +30,8 @@ namespace iTunes.Duplicate.Gui
             this.duplicate = duplicate;
             trackTime = new DateTime(time.Ticks);
             this.searchText = searchText;
+            this.result = "";
+
         }
 
         public bool Duplicate
@@ -60,6 +63,12 @@ namespace iTunes.Duplicate.Gui
         public string Path
         {
             get { return path; }
+        }
+
+        public string Result
+        {
+            get { return result; }
+            set { result = value; }
         }
 
     }

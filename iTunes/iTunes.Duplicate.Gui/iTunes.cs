@@ -155,7 +155,7 @@ namespace iTunes.Duplicate.Gui
                             {
                                 string resultArtist = resultTrack.Artist;
                                 resultArtist = FormatArtist(resultArtist);
-                                if(resultArtist.Contains(searchArtist) || searchArtist.Contains(resultArtist))
+                                if (resultArtist.Contains(searchArtist) || searchArtist.Contains(resultArtist))
                                 {
                                     state = State.StateID.ReadyToCheckTime;
                                     TimeSpan trackLength = (TimeSpan)arryTrackLength[arryTrackTitles.IndexOf(title)];
@@ -166,12 +166,30 @@ namespace iTunes.Duplicate.Gui
                                     if (difference.TotalSeconds <= Properties.Settings.Default.TimeDifferenceInSec)
                                     {
                                         Track track = (Track)Tracks[arryTrackTitles.IndexOf(title)];
+                                        track.Result = " ";
                                         track.Duplicate = true;
                                         break;
                                     }
+                                    else
+                                    {
+                                        Track track = (Track)Tracks[arryTrackTitles.IndexOf(title)];
+                                        track.Result = "Not duplicate - Track Time exceeds threshold.";
+                                    }
+
                                 }
+                                else
+                                {
+                                    Track track = (Track)Tracks[arryTrackTitles.IndexOf(title)];
+                                    track.Result = "Not duplicate - Artist not matched.";
+                                }
+
                             }
                         }
+                    }
+                    else
+                    {
+                        Track track = (Track)Tracks[arryTrackTitles.IndexOf(title)];
+                        track.Result = "Not duplicate - Title not matched.";
                     }
                 }
             }
